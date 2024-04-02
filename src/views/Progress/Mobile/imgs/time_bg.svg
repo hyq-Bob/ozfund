@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="750px" height="856px" viewBox="0 0 750 856" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>编组 5</title>
+    <defs>
+        <rect id="path-1" x="0" y="0" width="750" height="856"></rect>
+        <linearGradient x1="3.20952245%" y1="0%" x2="107.322216%" y2="115.041472%" id="linearGradient-3">
+            <stop stop-color="#DEE7FF" offset="0%"></stop>
+            <stop stop-color="#EBEFF9" offset="23.6011051%"></stop>
+            <stop stop-color="#F2FFFB" offset="44.1229885%"></stop>
+            <stop stop-color="#E5E9FF" offset="80.6001918%"></stop>
+            <stop stop-color="#A6CBFF" offset="100%"></stop>
+        </linearGradient>
+        <path d="M0,0 L750,0 L750,782.095642 C698.937254,766.12089 633.603921,754.14591 554,746.170702 C434.594118,734.207891 320.898861,802 206.449431,802 C130.14981,802 61.3333333,783.390234 0,746.170702 L0,0 Z" id="path-4"></path>
+        <filter x="-20.0%" y="-18.7%" width="140.0%" height="137.4%" filterUnits="objectBoundingBox" id="filter-5">
+            <feGaussianBlur stdDeviation="50" in="SourceGraphic"></feGaussianBlur>
+        </filter>
+        <linearGradient x1="56.4949754%" y1="11.8699051%" x2="53.6655031%" y2="89.2656517%" id="linearGradient-7">
+            <stop stop-color="#E7ECFB" stop-opacity="0" offset="0%"></stop>
+            <stop stop-color="#FFFFFF" offset="100%"></stop>
+        </linearGradient>
+        <path d="M0,0.485472155 L750,93.4409026 L750,723.112158 C688.914275,700.825147 623.580941,688.283322 554,685.486683 C387.175918,678.781589 328.991877,740.830508 219,740.830508 C136.932389,740.830508 63.9323887,722.220743 0,685.001211 L0,0.485472155 Z" id="path-8"></path>
+    </defs>
+    <g id="页面-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="5进程" transform="translate(0, -670)">
+            <g id="编组-5" transform="translate(0, 670)">
+                <mask id="mask-2" fill="white">
+                    <use xlink:href="#path-1"></use>
+                </mask>
+                <g id="蒙版"></g>
+                <g mask="url(#mask-2)">
+                    <mask id="mask-6" fill="white">
+                        <use xlink:href="#path-4" transform="translate(375, 401) scale(1, -1) translate(-375, -401)"></use>
+                    </mask>
+                    <use id="蒙版" fill="url(#linearGradient-3)" opacity="0.5" filter="url(#filter-5)" transform="translate(375, 401) scale(1, -1) translate(-375, -401)" xlink:href="#path-4"></use>
+                    <mask id="mask-9" fill="white">
+                        <use xlink:href="#path-8" transform="translate(375, 370.658) scale(1, -1) translate(-375, -370.658)"></use>
+                    </mask>
+                    <use id="蒙版" fill="url(#linearGradient-7)" transform="translate(375, 370.658) scale(1, -1) translate(-375, -370.658)" xlink:href="#path-8"></use>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

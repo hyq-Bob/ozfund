@@ -1,0 +1,32 @@
+@font-face {
+  font-family: PingFang-Bold;
+  src: url('../assets/font/PingFang-Bold.ttf') format('ttf');
+}
+@font-face {
+  font-family: PingFangSC-ExtraLight;
+  src: url('../assets/font/PingFang-ExtraLight.ttf') format('ttf');
+}
+@font-face {
+  font-family: PingFangSC-Medium;
+  src: url('../assets/font/PingFang-Medium.ttf') format('ttf');
+}
+@font-face {
+  font-family: PingFangSC-Regular;
+  src: url('../assets/font/PingFang-Regular.ttf') format('ttf');
+}
+@font-face {
+  font-family: PingFangSC-Light;
+  src: url('../assets/font/PingFang-Light.ttf') format('ttf');
+}
+@font-face {
+  font-family: zihun35hao-jindianyahei;
+  src: url('../assets/font/zihun35hao-jindianyahei.ttf') format('ttf');
+}
+@font-face {
+  font-family: DINNextW1G-Bold;
+  src: url('../assets/font/DINNextW1G-Bold.otf');
+}
+@font-face {
+  font-family: DIN-BlackItalic;
+  src: url('../assets/font/DIN-BlackItalic.otf');
+}

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1920px" height="902px" viewBox="0 0 1920 902" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>椭圆形备份 2</title>
+    <defs>
+        <polygon id="path-1" points="0 0 1920 0 1920 902 0 902"></polygon>
+        <linearGradient x1="-36.0955784%" y1="68.3815023%" x2="133.443477%" y2="36.839206%" id="linearGradient-3">
+            <stop stop-color="#A6CBFF" offset="0%"></stop>
+            <stop stop-color="#E5E9FF" offset="26.2419012%"></stop>
+            <stop stop-color="#F2FFFB" offset="51.786265%"></stop>
+            <stop stop-color="#EBEFF9" offset="74.8819773%"></stop>
+            <stop stop-color="#DEE7FF" offset="100%"></stop>
+            <stop stop-color="#DEE7FF" offset="100%"></stop>
+            <stop stop-color="#DEE7FF" offset="100%"></stop>
+        </linearGradient>
+        <filter x="-7.8%" y="-19.9%" width="115.6%" height="139.9%" filterUnits="objectBoundingBox" id="filter-4">
+            <feGaussianBlur stdDeviation="50" in="SourceGraphic"></feGaussianBlur>
+        </filter>
+    </defs>
+    <g id="2023.3.14" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="6动态备份-5" transform="translate(0, -1169)">
+            <g id="椭圆形备份-2" transform="translate(0, 1169)">
+                <mask id="mask-2" fill="white">
+                    <use xlink:href="#path-1"></use>
+                </mask>
+                <g id="蒙版"></g>
+                <path d="M-7.74991182e-13,118 L2.35979014e-11,840 L1920,840 C1920.2266,399.669017 1920.2266,177.430386 1920,173.284107 C1749.83932,239.284107 1619,365 1218,365 C817,365 811.753534,141 545,141 C278.246466,141 220.881106,143 30.4661221,88.4687207 C7.21761267,84.4654675 -2.93776135,94.3092272 -7.74991182e-13,118 Z" fill="url(#linearGradient-3)" opacity="0.400000006" filter="url(#filter-4)" mask="url(#mask-2)"></path>
+            </g>
+        </g>
+    </g>
+</svg>

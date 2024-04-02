@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="750px" height="1063px" viewBox="0 0 750 1063" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>编组 7</title>
+    <defs>
+        <linearGradient x1="50%" y1="0%" x2="50%" y2="100%" id="linearGradient-1">
+            <stop stop-color="#FFFFFF" offset="0%"></stop>
+            <stop stop-color="#FFFFFF" offset="100%"></stop>
+        </linearGradient>
+        <rect id="path-2" x="0" y="0" width="750" height="1063"></rect>
+        <filter x="-22.0%" y="-26.1%" width="144.0%" height="152.2%" filterUnits="objectBoundingBox" id="filter-4">
+            <feGaussianBlur stdDeviation="50" in="SourceGraphic"></feGaussianBlur>
+        </filter>
+        <filter x="-21.4%" y="-25.4%" width="142.8%" height="150.8%" filterUnits="objectBoundingBox" id="filter-5">
+            <feGaussianBlur stdDeviation="50" in="SourceGraphic"></feGaussianBlur>
+        </filter>
+        <filter x="-12.2%" y="-14.5%" width="124.4%" height="128.9%" filterUnits="objectBoundingBox" id="filter-6">
+            <feGaussianBlur stdDeviation="50" in="SourceGraphic"></feGaussianBlur>
+        </filter>
+        <linearGradient x1="50%" y1="0%" x2="50%" y2="60.5962301%" id="linearGradient-7">
+            <stop stop-color="#FFFFFF" stop-opacity="0" offset="0%"></stop>
+            <stop stop-color="#FFFFFF" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="页面-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="3购买与质押" transform="translate(0, -198)">
+            <g id="编组-7" transform="translate(0, 198)">
+                <g id="椭圆形备份-+-椭圆形备份-3-+-椭圆形-蒙版">
+                    <mask id="mask-3" fill="white">
+                        <use xlink:href="#path-2"></use>
+                    </mask>
+                    <use id="蒙版" fill="url(#linearGradient-1)" xlink:href="#path-2"></use>
+                    <ellipse id="椭圆形备份-3" fill="#DEDEFF" opacity="0.400000006" filter="url(#filter-4)" mask="url(#mask-3)" cx="654.18012" cy="830.488872" rx="341.18012" ry="287.608618"></ellipse>
+                    <ellipse id="椭圆形备份" fill="#B4D2FF" opacity="0.200000003" filter="url(#filter-5)" mask="url(#mask-3)" cx="18.4956181" cy="676.154776" rx="350.495618" ry="295.461413"></ellipse>
+                    <ellipse id="椭圆形" fill="#F0FBFB" opacity="0.699999988" filter="url(#filter-6)" mask="url(#mask-3)" cx="717.546125" cy="137.911116" rx="615.59917" ry="518.938872"></ellipse>
+                </g>
+                <rect id="蒙版" fill="url(#linearGradient-7)" x="0" y="962" width="750" height="101"></rect>
+            </g>
+        </g>
+    </g>
+</svg>

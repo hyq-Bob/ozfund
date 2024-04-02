@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1920px" height="2085px" viewBox="0 0 1920 2085" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>位图</title>
+    <defs>
+        <linearGradient x1="-3.50368413%" y1="6.78405762%" x2="115.546451%" y2="106.21657%" id="linearGradient-1">
+            <stop stop-color="#DEE7FF" offset="0%"></stop>
+            <stop stop-color="#EBEFF9" offset="23.6011051%"></stop>
+            <stop stop-color="#F2FFFB" offset="44.1229885%"></stop>
+            <stop stop-color="#E5E9FF" offset="80.6001918%"></stop>
+            <stop stop-color="#A6CBFF" offset="100%"></stop>
+        </linearGradient>
+        <path d="M0,0 L1920,0 L1920,1707.31498 C1724.98831,1654.75596 1494.15206,1627.13462 1227.49124,1624.45095 C789.484024,1689.34404 643.300499,1785 404.808109,1785 C245.813182,1785 110.877145,1759.10499 0,1707.31498 L0,0 Z" id="path-2"></path>
+        <filter x="-7.8%" y="-8.4%" width="115.6%" height="116.8%" filterUnits="objectBoundingBox" id="filter-3">
+            <feGaussianBlur stdDeviation="50" in="SourceGraphic"></feGaussianBlur>
+        </filter>
+        <linearGradient x1="51.5348529%" y1="42.6298496%" x2="53.6655031%" y2="55.4792247%" id="linearGradient-5">
+            <stop stop-color="#E7ECFB" stop-opacity="0" offset="0%"></stop>
+            <stop stop-color="#FFFFFF" offset="100%"></stop>
+        </linearGradient>
+        <path d="M0,-2.99026052 L1920,-2.99026052 L1920,643.2726 C1742.94796,580.98378 1526.48055,548.89616 1270.59777,547.009739 C998.685883,545.005149 690.809672,698.182751 419.420141,704.710758 C279.76849,708.069941 139.961776,682.169601 0,627.009739 L0,-2.99026052 Z" id="path-6"></path>
+        <linearGradient x1="76.2091823%" y1="26.3220358%" x2="76.2091823%" y2="91.8382156%" id="linearGradient-8">
+            <stop stop-color="#E7ECFB" stop-opacity="0" offset="0%"></stop>
+            <stop stop-color="#FFFFFF" offset="100%"></stop>
+        </linearGradient>
+        <polygon id="path-9" points="0 943.30516 1920 943.30516 1920 1891.30516 0 1891.30516"></polygon>
+    </defs>
+    <g id="2023.3.14" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="5进程备份" transform="translate(0, -280)">
+            <g id="编组-28备份-6" transform="translate(0, 430)">
+                <mask id="mask-4" fill="white">
+                    <use xlink:href="#path-2" transform="translate(960, 892.5) scale(1, -1) translate(-960, -892.5)"></use>
+                </mask>
+                <use id="蒙版" fill="url(#linearGradient-1)" opacity="0.5" filter="url(#filter-3)" transform="translate(960, 892.5) scale(1, -1) translate(-960, -892.5)" xlink:href="#path-2"></use>
+                <mask id="mask-7" fill="white">
+                    <use xlink:href="#path-6" transform="translate(960, 351.0049) scale(1, -1) translate(-960, -351.0049)"></use>
+                </mask>
+                <use id="蒙版" fill="url(#linearGradient-5)" transform="translate(960, 351.0049) scale(1, -1) translate(-960, -351.0049)" xlink:href="#path-6"></use>
+                <mask id="mask-10" fill="white">
+                    <use xlink:href="#path-9"></use>
+                </mask>
+                <use id="蒙版" fill="url(#linearGradient-8)" xlink:href="#path-9"></use>
+            </g>
+        </g>
+    </g>
+</svg>

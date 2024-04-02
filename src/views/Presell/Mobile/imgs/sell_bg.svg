@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="690px" height="233px" viewBox="0 0 690 233" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>编组 10备份</title>
+    <defs>
+        <linearGradient x1="-13.6418454%" y1="64.0297836%" x2="92.0013853%" y2="35.2477511%" id="linearGradient-1">
+            <stop stop-color="#A6CBFF" offset="0%"></stop>
+            <stop stop-color="#E5E9FF" offset="19.3998082%"></stop>
+            <stop stop-color="#F2FFFB" offset="55.8770115%"></stop>
+            <stop stop-color="#EBEFF9" offset="76.3988949%"></stop>
+            <stop stop-color="#DEE7FF" offset="100%"></stop>
+            <stop stop-color="#DEE7FF" offset="100%"></stop>
+            <stop stop-color="#DEE7FF" offset="100%"></stop>
+        </linearGradient>
+        <filter x="-1.7%" y="-6.2%" width="103.3%" height="112.4%" filterUnits="objectBoundingBox" id="filter-2">
+            <feOffset dx="0" dy="0" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="3.5" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 1   0 0 0 0 1   0 0 0 0 1  0 0 0 0.603114415 0" type="matrix" in="shadowBlurOuter1" result="shadowMatrixOuter1"></feColorMatrix>
+            <feMerge>
+                <feMergeNode in="shadowMatrixOuter1"></feMergeNode>
+                <feMergeNode in="SourceGraphic"></feMergeNode>
+            </feMerge>
+        </filter>
+        <rect id="path-3" x="0" y="0" width="630" height="170" rx="20"></rect>
+    </defs>
+    <g id="页面-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="4TOTO预售" transform="translate(-30, -1103)">
+            <g id="编组-14" transform="translate(30, 1103)">
+                <rect id="矩形备份" fill="url(#linearGradient-1)" x="0" y="0" width="690" height="232.017544" rx="25"></rect>
+                <g id="stock-market-+-stock-market备份-蒙版备份" filter="url(#filter-2)" transform="translate(30, 30)">
+                    <mask id="mask-4" fill="white">
+                        <use xlink:href="#path-3"></use>
+                    </mask>
+                    <rect stroke="#FFFFFF" stroke-width="2" x="1" y="1" width="628" height="168" rx="20"></rect>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

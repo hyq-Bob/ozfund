@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="750px" height="988px" viewBox="0 0 750 988" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>路径 2</title>
+    <defs>
+        <linearGradient x1="16.1067393%" y1="90.9090765%" x2="109.026844%" y2="-27.2434223%" id="linearGradient-1">
+            <stop stop-color="#A6CBFF" offset="0%"></stop>
+            <stop stop-color="#E5E9FF" offset="19.3998082%"></stop>
+            <stop stop-color="#F2FFFB" offset="55.8770115%"></stop>
+            <stop stop-color="#EBEFF9" offset="76.3988949%"></stop>
+            <stop stop-color="#DEE7FF" offset="100%"></stop>
+            <stop stop-color="#DEE7FF" offset="100%"></stop>
+            <stop stop-color="#DEE7FF" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="页面-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="2生态" transform="translate(0, -197)" fill="url(#linearGradient-1)">
+            <path d="M0,197 L0,1185 C61.0047979,1150.10086 133.011572,1127.08338 216.020321,1115.94755 C325.525892,1101.25712 415.986715,1124.96962 540,1124.96962 C652,1124.96962 749.748184,1086.81384 749.748184,1081.01819 C750.083939,1057.01983 750.083939,762.347095 749.748184,197 L0,197 Z" id="路径-2"></path>
+        </g>
+    </g>
+</svg>

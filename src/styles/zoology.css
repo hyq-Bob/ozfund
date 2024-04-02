@@ -1,0 +1,255 @@
+/* 模块一 start */
+
+/* 模块一 end */
+
+/* 模块二 start */
+
+/* 模块二 end */
+/* 模块三 start */
+
+/* 模块三 end */
+/* 模块四 start */
+
+/* 模块四 end */
+
+/* @media (max-width: 1600px) {
+  .zoology_module_one .zoology_module_right {
+    margin-right: 0;
+    width: 45%;
+  }
+}
+@media (max-width: 1230px) {
+  .zoology_module_one .zoology_module_left  {
+    width: 42%;
+  }
+}
+@media (max-width: 1200px) {
+  .zoology_module_one {
+    padding: 76px 0 55px;
+  }
+  .zoology_module_one .zoology_module_left {
+    padding-top: 5%;
+  }
+  .zoology_module_one .zoology_module_left h3 {
+    font-size: 51px;
+    line-height: 54px;
+  }
+  .zoology_module_two {
+    padding: 5% 0;
+  }
+  .zoology_module_two .zoology_module_right h3 {
+    font-size: 32px;
+    line-height: 54px;
+  }
+  .zoology_module_two .zoology_module_right p {
+    margin: 3% 0 6%;
+  }
+  .zoology_module_two .zoology_module_right button {
+    font-size: 16px;
+  }
+  .zoology_module_three {
+    padding: 15% 0 17%;
+  }
+  .zoology_module_three h3 {
+    font-size: 32px;
+    margin-bottom: 2%;
+  }
+  .zoology_module_four {
+    padding: 3% 0 6%;
+  }
+  .zoology_module_four .zoology_module_left h3 {
+    font-size: 32px;
+  }
+}
+@media (max-width: 996px) {
+  .zoology_module_one {
+    padding: 70px 0 6%;
+  }
+  .zoology_module_one .zoology_module_left {
+    padding-top: 2%;
+  }
+  .zoology_module_one .zoology_module_left h3 {
+    font-size: 40px;
+    line-height: 1.2;
+    margin-bottom: 5%;
+  }
+  .zoology_module_one .zoology_module_left p {
+    font-size: 14px;
+    line-height: 2;
+  }
+  .zoology_module_two .zoology_module_right h3 {
+    font-size: 25px;
+    line-height: 1.2;
+  }
+  .zoology_module_two .zoology_module_right p {
+    font-size: 12px;
+  }
+  .zoology_module_two .zoology_module_right button {
+    font-size: 14px;
+    height: 38px;
+  }
+  .zoology_module_three {
+    background-size: auto;
+    padding: 7%;
+  }
+  .zoology_module_three h3 {
+    font-size: 25px;
+  }
+  .zoology_module_three p {
+    font-size: 12px;
+  }
+  .zoology_module_four .zoology_module_left h3 {
+    font-size: 25px;
+    line-height: 1.2;
+  }
+  .zoology_module_four .zoology_module_left {
+    font-size: 12px;
+  }
+}
+@media (max-width: 768px) {
+  .zoology_module_one .w {
+    flex-direction: column;
+    padding-top: 3%;
+  }
+  .zoology_module_one .zoology_module_left {
+    width: 100%;
+    text-align: center;
+  }
+  .zoology_module_one .zoology_module_left h3 {
+    font-size: 32px;
+    margin-bottom: 10px;
+  }
+  .zoology_module_one .zoology_module_right {
+    margin: 2% auto 0;
+  }
+  .zoology_module_two .w {
+    flex-direction: column;
+  }
+  .zoology_module_two .zoology_module_left {
+    margin: 0 auto;
+  }
+  .zoology_module_two .zoology_module_right {
+    width: 100%;
+    text-align: center;
+    padding-top: 3%;
+  }
+  .zoology_module_two .zoology_module_right h3 {
+    font-size: 20px;
+  }
+  .zoology_module_two .zoology_module_right button {
+    font-size: 12px;
+  }
+  .zoology_module_three h3 {
+    font-size: 20px;
+  }
+  .zoology_module_four .w {
+    flex-direction: column;
+  }
+  .zoology_module_four .zoology_module_left {
+    width: 100%;
+    text-align: center;
+  }
+  .zoology_module_four .zoology_module_right {
+    margin: 0 auto;
+  }
+}
+@media(max-width: 480px) {
+  .zoology_module_one {
+    margin-top: 0;
+    padding: 2% 0 3%;
+    background: url('~@/assets/images/zoology/module111.png') no-repeat;
+    background-size: 100%;
+    background-position: bottom;
+  }
+  .zoology_module_one .w {
+    padding-bottom: 68px;
+  }
+  .zoology_module_one .zoology_module_left h3 {
+    font-size: 32px;
+    line-height: 40px;
+    margin-bottom: 15px;
+  }
+  .zoology_module_one .zoology_module_left p {
+    font-size: 13px;
+    line-height: 21px;
+  }
+  .zoology_module_one .zoology_module_right {
+    width: 60%;
+  }
+  .zoology_module_two {
+    margin-top: 0px;
+    padding-top: 0;
+  }
+  .zoology_module_two .zoology_module_left {
+    width: 260px;
+    margin-top: 0;
+  }
+  .zoology_module_two .zoology_module_right {
+    padding-top: 0;
+  }
+  .zoology_module_two .zoology_module_right h3 {
+    font-size: 24px;
+    line-height: 40px;
+    font-weight: 500;
+  }
+  .zoology_module_two .zoology_module_right p {
+    line-height: 21px;
+    font-size: 14px;
+    margin: 10px 0 20px;
+  }
+  
+  .zoology_module_three h3 {
+    font-size: 24px;
+    margin-bottom: 10px;
+    color: #333333;
+    line-height: 40px;
+    font-weight: 500;
+  }
+  .zoology_module_three {
+    padding: 61px 0 65px;
+    background: url('~@/assets/images/zoology/module22.png') no-repeat;
+    background-size: 100% 100%;
+   }
+  .zoology_module_three p {
+    font-size: 14px;
+    color: #222222;
+    text-align: center;
+    line-height: 21px;
+  }
+  .zoology_module_four .zoology_module_left h3 {
+    line-height: 40px;
+  }
+  .zoology_module_four .zoology_module_left {
+    width: 100%;
+    margin: 0 auto;
+    padding-top: 5%;
+  }
+  .zoology_module_two .zoology_module_right button {
+    height: 44px;
+    font-size: 14px;
+  }
+  .zoology_module_two .zoology_module_right button img {
+    width: 18px;
+  }
+  .zoology_module_three img {
+    width: 60%;
+    margin: 20px auto;
+  }
+  .zoology_module_four .zoology_module_right {
+    width: 60%;
+  }
+  .zoology_module_three .zoology_module_tit {
+    width: 100%;
+  }
+  .zoology_module_four .zoology_module_left p {
+    margin: 3% 0 1%;
+    font-size: 14px;
+    line-height: 21px;
+    text-align: center;
+    color: #222222;
+  }
+  .zoology_module_four .zoology_module_left span {
+    font-size: 14px;
+    line-height: 21px;
+  }
+} */

@@ -1,0 +1,2 @@
+打包之后
+把根目录下的 favicon.png和pdf文件 统一放到 dist-static-ozfund里

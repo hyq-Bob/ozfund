@@ -1,0 +1,171 @@
+
+/* 模块二 end */
+@media (max-width: 1200px) {
+  .dynamic_module_tit {
+    font-size: 32px;
+  }
+  .dynamic_ul {
+    margin-top: 40px;
+  }
+  .dynamic_ul li {
+    padding: 32px;
+    margin-bottom: 2%;
+  }
+  .dynamic_ul li p {
+    font-size: 19px;
+  }
+}
+@media (max-width: 996px) {
+  .dynamic_module_tit {
+    font-size: 25px;
+  }
+  .dynamic_module_tit_min {
+    font-size: 12px;
+  }
+  .dynamic_ul {
+    margin-top: 4%;
+  }
+  .dynamic_ul li {
+    padding: 2%;
+  }
+  .dynamic_ul li p {
+    font-size: 18px;
+  }
+  .dynamic_ul li span {
+    font-size: 12px;
+  }
+  .dynamic_ul li img {
+    width: 12%;
+  }
+  .dynamic_module_wrap {
+    flex-direction: column;
+  }
+  .dynamic_module_wrap .dynamic_module_left {
+    width: 100%;
+  }
+}
+@media (max-width: 768px) {
+  .dynamic_module_tit {
+    text-align: center;
+    font-size: 20px;
+  }
+  .dynamic_module_tit_min {
+    text-align: center;
+  }
+  .dynamic_ul {
+    padding-bottom: 2%;
+  }
+  .dynamic_ul li {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  .dynamic_ul li img {
+    margin-right: 0;
+    margin-bottom: 2%;
+  }
+  .dynamic_ul li p {
+    font-size: 16px;
+  }
+}
+@media (max-width: 480px) {
+  .progress_mobile_bg {
+    background-size: 100% 100%;
+  }
+  .progress_module_two {
+    margin-top: -40px;
+    padding-top: 50px;
+  }
+  .progress_module_one .progress_module_left h3 {
+    display: none;
+  }
+  .progress_list {
+    padding-bottom: 37px;
+    height: 300px;
+    overflow-y: scroll;
+  }
+  .progress_i {
+    margin-bottom: 20px;
+
+  }
+  .progress_i_info {
+    width: 100%;
+    text-align: left;
+  }
+  .dynamic_module_two {
+    margin-top: 15px;
+  }
+  .pointer .solid {
+    width: 7px;
+    height: 7px;
+  }
+  .pointer .line {
+    width: 20px;
+  }
+  .pointer .hollow {
+    width: 15px;
+    height: 15px;
+  }
+  .progress_i_left .progress_txt {
+    text-align: left;
+    margin-right: 0;
+    margin-left: 10px;
+  }
+  .progress_i_right .progress_txt {
+    margin-left: 10px;
+  }
+  .pointer .hollow, .pointer .line {
+    display: block;
+  }
+  .progress_txt p {
+    font-size: 14px;
+    color: #333333;
+    font-weight: 500;
+    margin-bottom: 5px;
+  }
+  .progress_txt span {
+    font-size: 13px;
+    color: #666666;
+    line-height: 13px;
+  }
+  .progress_module_two_tit {
+    font-size: 21px;
+    color: #333333;
+    line-height: 34px;
+    font-weight: 500;
+    margin-bottom: 18px;
+    font-family: PingFangSC-Medium;
+  }
+  .dynamic_module_tit {
+    font-family: PingFangSC-Medium;
+    font-size: 21px;
+    color: #333333;
+    line-height: 34px;
+    font-weight: 500;
+    text-align: left;
+  }
+  .dynamic_ul {
+    margin-bottom: 11px;
+  }
+  .dynamic_ul li {
+    padding: 20px 15px 15px;
+    margin-bottom: 10px;
+  }
+  .dynamic_ul li img {
+    width: 100px;
+    margin-bottom: 20px;
+  }
+  .dynamic_ul li p {
+    font-size: 16px;
+    color: #333333;
+    text-align: center;
+    line-height: 16px;
+    margin-bottom: 10px;
+  }
+  .dynamic_ul li span {
+    font-size: 14px;
+    color: #333333;
+    line-height: 16px;
+  }
+  
+}

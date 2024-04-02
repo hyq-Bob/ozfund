@@ -1,8 +1,8 @@
 /*
  * @Author: hyq_bob bob.he@autech.one
  * @Date: 2024-03-25 19:06:54
- * @LastEditors: hyq_bob bob.he@autech.one
- * @LastEditTime: 2024-04-02 21:00:06
+ * @LastEditors: heyongqiang 1498833800@qq.com
+ * @LastEditTime: 2024-04-03 01:02:15
  * @FilePath: /ozfund-mobile/src/utils/metamask.js
  * @Description: metamask相关
  */
@@ -75,12 +75,45 @@ async function signatureByEIP712(
   tokenName,
   verifyAddr,
   owner,
-  spender,
+  spender,  // 0x5Fb222870337A34f01bF6389E2fC3Ab317f92f2a
   val,
   deadline,
   chainId,
   nonce
 ) {
+
+
+//  let objStr =  {
+//     "types": {
+//       "EIP712Domain": [
+//         { "name": "name", "type": "string" },
+//         { "name": "version", "type": "string" },
+//         { "name": "chainId", "type": "uint256" },
+//         { "name": "verifyingContract", "type": "address" }
+//       ],
+//         "Permit": [
+//           { "name": "owner", "type": "address" },
+//           { "name": "spender", "type": "address" },
+//           { "name": "value", "type": "uint256" },
+//           { "name": "nonce", "type": "uint256" },
+//           { "name": "deadline", "type": "uint256" }
+//         ]
+//     },
+//     "primaryType": "Permit",
+//       "domain": {
+//       "name": "OZCoin",
+//         "version": "1",
+//         "chainId": "0xaa36a7",
+//           "verifyingContract": "0x6Eb1b1b7e34Ac61A2a82d20981a1aC9E4D9f8eEb"
+//     },
+//     "message": {
+//       "owner": "0xcb43d8404a74da11857e2563477f888119c8a441",
+//         "spender": "0x5Fb222870337A34f01bF6389E2fC3Ab317f92f2a",
+//         "value": "1000000000000000000",
+//         "nonce": nonce,
+//           "deadline": deadline
+//     }
+//   }
   let types = {
     EIP712Domain: [
       { name: "name", type: "string" },
@@ -99,32 +132,33 @@ async function signatureByEIP712(
   };
 
   let domain = {
-    name: tokenName,
+    name: 'OZCoin',
     version: "1",
     chainId: chainId,
     verifyingContract: verifyAddr,
   };
   let message = {
-    owner:owner,
-    spender:spender,
-    val:val,
-    nonce:nonce,
-    deadline:deadline,
-    contents:"stak"
+    owner: owner,
+    spender: spender,
+    val: val,
+    nonce: nonce,
+    deadline: deadline,
+    contents: "stak"
   };
   const primaryType = 'Permit'; // 指定主类型
   // 使用ethers.js生成签名
-
+  let paramsStr = JSON.stringify({
+    types,
+    primaryType,
+    domain,
+    message
+  })
+  console.log('paramsStr: ', paramsStr);
   let signature = await ethereum.request({
     method: 'eth_signTypedData_v4',
-    params: [owner, JSON.stringify({
-      types,
-      primaryType,
-      domain,
-      message
-    })],
+    params: [owner, paramsStr],
   });
-  // console.log("EIP712签名>>>>: ", await signature);
+  console.log("EIP712签名>>>>: ", await signature);
   return signature;
 }
 // 获取链ID

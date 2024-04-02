@@ -163,10 +163,10 @@ export default {
     mobilePledgeBtn() {
       if (!this.pledgeNumber) return message.error(this.$t('tipMessage.successTip'))
       // this.$store.dispatch('Wallet/mobileStake', { unit: 'ether', amount: this.pledgeNumber, cb: this.resHint })
-      this.$store.dispatch('Wallet/pcStake', { unit: 'ether', amount: this.pledgeNumber, cb: this.resHint })
-    // this.stakeCoin2({amount: this.pledgeNumber}).then(({success})=>{
-    //     this.resHint2(success)
-    // })
+      // this.$store.dispatch('Wallet/pcStake', { unit: 'ether', amount: this.pledgeNumber, cb: this.resHint })
+    this.stakeCoin2({amount: this.pledgeNumber}).then(({success})=>{
+        this.resHint2(success)
+    })
     },
     mobileExtractBtn() {
       this.$store.dispatch('Wallet/mobileRedemption', { cb: this.resHint2 })

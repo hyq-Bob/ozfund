@@ -1,4 +1,4 @@
-import { providers } from "ethers";
+import { providers, ethers } from "ethers";
 import { provider } from "@/walletConnect/provide";
 import Web3 from "web3";
 import erc20ContractAbi from "@/abi/erc20Abi.json";
@@ -8,14 +8,16 @@ import ozcoinStakeExpandAbi from "@/abi/ozcoinStakeExpandAbi.json";
 import * as operCookie from '@/utils/auth'
 import { message } from 'ant-design-vue';
 import { multiply } from '@/utils/filters'
-
+import {
+  getProvider
+} from "@/utils/metamask.js";
 const state = {
   loading: false,
-  clientType: null,
+  clientType: 'pc',
   web3: new Web3(provider),
   web3Provider: new providers.Web3Provider(provider),
   signer: null,
-  address: '0xcb43D8404a74da11857e2563477F888119c8a441',
+  address: "",
   chainId: "",
   // status: false,
   // 
@@ -818,17 +820,36 @@ const actions = {
   },
   // pc 质押
   async pcStake({ state }, { amount, unit, cb }) {
+    const provider = await getProvider()
+    const signer = provider.getSigner();
     let spender = state.ozcoinStakeContractAddress;
     var timestamp = new Date().getTime();
     let deadline = timestamp + 360000;
     let value = state.web3.utils.toWei(amount, unit);
+    let myContract1 = new ethers.Contract(
+      state.ozcoinContractAddress,
+      erc20ContractAbi,
+      signer
+    );
+
+  let nonce1 =  await myContract1.nonces(state.address)
+  //  const nonce = myContract1.nonces(state.ozcoinStakeContractAddress)
+
+   const hexString = ethers.utils.hexlify(nonce1);
+   
+   // 将十六进制字符串转换为BigNumber对象
+   const bigNumber = ethers.BigNumber.from(hexString);
+   
+   // 将BigNumber对象转换为JavaScript原生的数字类型（uint256）
+  //  const nonce = bigNumber.toNumber();
+    
     let nonce = await state.web3.eth.getTransactionCount(
       state.address,
-      // "pending"
-      'latest'
+      "pending"
+      // 'latest'
       );
-      // let nonce = 0;
-      console.log('nonce: ', nonce);
+    console.log('nonce: ', nonce);
+    nonce +=1
     let permitData = signPremit(
       "OZCoin",
       state.ozcoinContractAddress,
@@ -838,7 +859,8 @@ const actions = {
       deadline,
       state.chainId,
       nonce
-    );
+      );
+      console.log('permitData: ', permitData);
     let signatureR = await window.ethereum.request({
       method: 'eth_signTypedData_v4',
       params: [state.address, permitData],
@@ -848,7 +870,7 @@ const actions = {
       state.ozcoinStakeContractAddress,
       {
         from: state.address, // default from address
-        gasLimit: 70000,
+        gasLimit: 1000000,
         gasPrice: 1000000000 // default gas price in wei, 10 gwei in this case
       }
     );

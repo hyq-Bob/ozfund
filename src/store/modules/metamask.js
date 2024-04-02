@@ -2,7 +2,7 @@
  * @Author: hyq_bob bob.he@autech.one
  * @Date: 2024-03-25 18:53:19
  * @LastEditors: heyongqiang 1498833800@qq.com
- * @LastEditTime: 2024-04-02 23:32:06
+ * @LastEditTime: 2024-04-03 01:00:34
  * @FilePath: /ozfund-mobile/src/store/modules/metamask.js
  * @Description: 钱包相关操作
  */
@@ -18,7 +18,7 @@ import {
   Erc20Transaction,
   EthTransactionWei,
   signatureByEIP712,
-  BigNumberToNum
+  BigNumberToNum,
 } from "@/utils/metamask.js";
 const state = {
   busdAddr: process.env.VUE_APP_BUSD_ADDR,
@@ -140,14 +140,12 @@ const actions = {
   },
   // 质押2
   async stakeCoin2({ state }, { amount, stakeAddr, gasLimit = 100000 }) {
-    console.log('amount: ', amount);
-    console.log('state: ', state);
     const provider = await getProvider()
     const signer = provider.getSigner();
     if(!stakeAddr){
       stakeAddr = await signer.getAddress();
     }
-    const val = amount * 1;
+    const val = EthTransactionWei(amount);
     const contract = new ethers.Contract(state.ozcoinAddr,erc20Abi,signer)
     let deadline = new Date().getTime() + 360000;
     const nonce1 = await contract.nonces(stakeAddr)
@@ -164,9 +162,9 @@ const actions = {
     console.log('nonce: ', nonce);
 
 
-    const stakingContract1 = new ethers.Contract(state.totoAddr, totoAbi, signer);
-   let a =  await stakingContract1.ozcoinStake()
-   console.log('a>>>>: ', a);
+    // const stakingContract1 = new ethers.Contract(state.totoAddr, totoAbi, signer);
+  //  let a =  await stakingContract1.ozcoinStake()
+  //  console.log('a>>>>: ', a);
 
  // 智能合约地址和ABI
  const stakingContractAddress = state.stakeAddr;  // 链地址
@@ -176,9 +174,8 @@ let chainId = await ethereum.request({ method: "eth_chainId" });
       'ozcoin',
       state.ozcoinAddr, // ozc链地址
       stakeAddr, // 调用者地址
-      // stakingContractAddress,
-      a.hash,
-      val,
+      stakingContractAddress, //质押链
+      val, // 质押数据
       deadline,
       chainId,
       nonce)

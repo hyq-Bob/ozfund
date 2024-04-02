@@ -2,7 +2,7 @@
  * @Author: hyq_bob bob.he@autech.one
  * @Date: 2024-03-25 18:53:19
  * @LastEditors: heyongqiang 1498833800@qq.com
- * @LastEditTime: 2024-04-03 01:00:34
+ * @LastEditTime: 2024-04-03 01:10:45
  * @FilePath: /ozfund-mobile/src/store/modules/metamask.js
  * @Description: 钱包相关操作
  */
@@ -171,7 +171,7 @@ const actions = {
  const stakingContractABI = ozcoinStakeExpandAbi;
 let chainId = await ethereum.request({ method: "eth_chainId" });
     let signature = await signatureByEIP712(
-      'ozcoin',
+      'OZCoin',
       state.ozcoinAddr, // ozc链地址
       stakeAddr, // 调用者地址
       stakingContractAddress, //质押链

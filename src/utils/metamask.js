@@ -1,8 +1,8 @@
 /*
  * @Author: hyq_bob bob.he@autech.one
  * @Date: 2024-03-25 19:06:54
- * @LastEditors: heyongqiang 1498833800@qq.com
- * @LastEditTime: 2024-04-03 01:02:15
+ * @LastEditors: hyq_bob bob.he@autech.one
+ * @LastEditTime: 2024-04-03 10:23:49
  * @FilePath: /ozfund-mobile/src/utils/metamask.js
  * @Description: metamask相关
  */
@@ -124,15 +124,14 @@ async function signatureByEIP712(
     Permit: [
       { name: "owner", type: "address" },
       { name: "spender", type: "address" },
-      { name: "val", type: "uint256" },
+      { name: "value", type: "uint256" },
       { name: "nonce", type: "uint256" },
       { name: "deadline", type: "uint256" },
-      { name: 'contents', type: 'string' }
     ],
   };
 
   let domain = {
-    name: 'OZCoin',
+    name: 'Ozcoin',
     version: "1",
     chainId: chainId,
     verifyingContract: verifyAddr,
@@ -140,10 +139,9 @@ async function signatureByEIP712(
   let message = {
     owner: owner,
     spender: spender,
-    val: val,
+    value: val,
     nonce: nonce,
     deadline: deadline,
-    contents: "stak"
   };
   const primaryType = 'Permit'; // 指定主类型
   // 使用ethers.js生成签名
@@ -157,6 +155,7 @@ async function signatureByEIP712(
   let signature = await ethereum.request({
     method: 'eth_signTypedData_v4',
     params: [owner, paramsStr],
+    from:owner
   });
   console.log("EIP712签名>>>>: ", await signature);
   return signature;

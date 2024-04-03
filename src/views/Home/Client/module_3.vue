@@ -8,7 +8,7 @@
         </div>
         <div class="conversion_home_info">
           <p class="conversion_home_info_tit toto_number">
-            {{ $t("global.toto") }}{{ $t("home.number") }}：{{ totoBalance }}
+            {{ $t("global.toto") }}{{ $t("home.number") }}：{{ totoBalance || 0}}
           </p>
           <div class="conversion_home_info_input">
             <div class="conversion_home_info_input_info">
@@ -63,6 +63,7 @@ export default {
     // ...mapActions("Wallet", ["pcExchangeOZCoin"]),
     // 兑换toto--> OzCoin
     async exchangeFn() {
+      if(!this.totoBalance)return
       this.disabledExchange = true
       let accountAddr = await this.checkIfWalletIsConnected();
       if (accountAddr) {

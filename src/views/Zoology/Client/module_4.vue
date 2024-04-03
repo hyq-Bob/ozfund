@@ -1,3 +1,11 @@
+<!--
+ * @Author: hyq_bob bob.he@autech.one
+ * @Date: 2024-03-19 17:27:28
+ * @LastEditors: hyq_bob bob.he@autech.one
+ * @LastEditTime: 2024-04-03 16:56:06
+ * @FilePath: /ozfund-mobile/src/views/Zoology/Client/module_4.vue
+ * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+-->
 <template>
   <div class="zoology_module_four">
     <div class="content-box">
@@ -38,10 +46,12 @@ export default {};
     font-size: 0.14rem;
 
     h3 {
+      font-family: PingFangSC-Medium;
       font-size: 0.4rem;
       color: #333;
       line-height: 0.44rem;
       font-weight: 500;
+      letter-spacing: 0;
     }
 
     p {

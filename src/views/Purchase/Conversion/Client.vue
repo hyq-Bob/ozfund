@@ -128,7 +128,7 @@ export default {
 };
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 ._conversion {
   width: 100%;
   padding: .4rem;
@@ -185,13 +185,14 @@ export default {
   }
 
   input {
-    font-family: DINNextW1G-Bold;
+    
     font-size: .16rem;
     color: #666;
     font-weight: 500;
     border: none;
     background: transparent;
     text-align: right;
+    border: none;
   }
 }
 
@@ -224,4 +225,5 @@ export default {
   display: block;
   margin: .3rem auto 0;
 }
+
 </style>

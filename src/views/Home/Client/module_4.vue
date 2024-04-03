@@ -14,8 +14,12 @@
         <!-- toto模块 -->
         <div class="card_i">
           <div class="card_i_top">
-            <img v-animation class="card_i_top_img page_gif"
-              :data-gif_url="require('@/assets/images/home/gif/ozc1.gif')" alt="" />
+            <img
+              v-animation
+              class="card_i_top_img page_gif"
+              :data-gif_url="require('@/assets/images/home/gif/ozc1.gif')"
+              alt=""
+            />
             <i class="card_i_top_foundation"></i>
           </div>
           <ul class="card_data">
@@ -37,7 +41,11 @@
             </li>
           </ul>
           <!-- <p class="card_address">{{ totoContractAddress }}</p> -->
-          <a target="_blank" :href="'https://bscscan.com/token/' + totoContractAddress" class="card_arrow">
+          <a
+            target="_blank"
+            :href="'https://bscscan.com/token/' + totoContractAddress"
+            class="card_arrow"
+          >
             <img src="@/assets/images/home/arrow.png" alt="" />
           </a>
         </div>
@@ -45,14 +53,18 @@
         <div class="card_i">
           <div class="card_i_top">
             <!--  v-if="scroll.moduleThree === 2" -->
-            <img v-animation class="card_i_top_img page_gif"
-              :data-gif_url="require('@/assets/images/home/gif/toto1.gif')" alt="" />
+            <img
+              v-animation
+              class="card_i_top_img page_gif"
+              :data-gif_url="require('@/assets/images/home/gif/toto1.gif')"
+              alt=""
+            />
             <i class="card_i_top_foundation"></i>
           </div>
           <ul class="card_data">
             <li>
               <p>{{ $t("home.price") }}</p>
-              <span>1TOTO = 1BUSD</span>
+              <span>1OZC = 1BUSD</span>
             </li>
             <li>
               <p>{{ $t("home.marketValue") }}</p>
@@ -64,7 +76,11 @@
             </li>
           </ul>
           <!-- <p class="card_address">{{ this.ozcoinContractAddress }}</p> -->
-          <a target="_blank" :href="'https://bscscan.com/token/' + ozcoinContractAddress" class="card_arrow">
+          <a
+            target="_blank"
+            :href="'https://bscscan.com/token/' + ozcoinContractAddress"
+            class="card_arrow"
+          >
             <img src="@/assets/images/home/arrow.png" alt="" />
           </a>
         </div>
@@ -77,26 +93,36 @@
 import { mapGetters, mapActions, mapState } from "vuex";
 export default {
   computed: {
-    ...mapState('WalletSplit', ['ozcMarketCap', 'destroyOzc', 'totoMarketCap', 'totoDestroy']),
-    ...mapGetters("Wallet", ["totoContractAddress","ozcoinContractAddress"]),
+    ...mapState("WalletSplit", [
+      "ozcMarketCap",
+      "destroyOzc",
+      "totoMarketCap",
+      "totoDestroy",
+    ]),
+    ...mapGetters("Wallet", ["totoContractAddress", "ozcoinContractAddress"]),
     // ozc 流通量
     ozcCirculatingSupply() {
-      return this.ozcMarketCap - this.destroyOzc
+      return this.ozcMarketCap - this.destroyOzc;
     },
     // toto 流通量
     totoCirculatingSupply() {
-      return this.totoMarketCap - this.totoDestroy
-    }
+      return this.totoMarketCap - this.totoDestroy;
+    },
   },
   methods: {
-    ...mapActions('WalletSplit', ['ozcPublish', 'circulatingSupplyFn','totoPublish', 'totoDestroyed'])
+    ...mapActions("WalletSplit", [
+      "ozcPublish",
+      "circulatingSupplyFn",
+      "totoPublish",
+      "totoDestroyed",
+    ]),
   },
   created() {
-    this.ozcPublish()
-    this.circulatingSupplyFn()
-    this.totoPublish()
-    this.totoDestroyed()
-  }
+    this.ozcPublish();
+    this.circulatingSupplyFn();
+    this.totoPublish();
+    this.totoDestroyed();
+  },
 };
 </script>
 
@@ -116,12 +142,13 @@ export default {
   }
 
   .home_modul_tit h3 {
+    font-family: PingFangSC-Medium;
+    letter-spacing: 0;
     font-size: 0.4rem;
     color: #333;
     line-height: 0.44rem;
     font-weight: 500;
     margin-bottom: 0.24rem;
-    font-family: "PingFang-Medium";
   }
 
   .home_modul_tit p {

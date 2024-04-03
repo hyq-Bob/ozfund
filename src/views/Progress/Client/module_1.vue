@@ -1,3 +1,11 @@
+<!--
+ * @Author: hyq_bob bob.he@autech.one
+ * @Date: 2024-03-19 17:27:28
+ * @LastEditors: hyq_bob bob.he@autech.one
+ * @LastEditTime: 2024-04-03 18:20:07
+ * @FilePath: /ozfund-mobile/src/views/Progress/Client/module_1.vue
+ * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+-->
 <template>
   <div class="progress_module_one">
     <div class="content-box">
@@ -19,7 +27,7 @@ export default {};
 .progress_module_one {
   background: url("../../../assets/images/progress/bg1.png") no-repeat;
   background-size: 100% 100%;
-  padding-top: 0.6rem;
+  padding: 0.6rem 0;
 
   .content-box {
     display: flex;

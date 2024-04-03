@@ -109,20 +109,22 @@ export default {
 .two_page_top {
   display: flex;
   align-items: center;
-  height: 88px;
-  padding: 0 30px;
+  height: .88rem;
+  padding: 0 .3rem;
   background: #fff;
   > img {
-    width: 20px;
-    height: 37px;
+    width: .2rem;
+    height: .37rem;
     object-fit: contain;
   }
   > p {
+    display: flex;
     font-family: PingFangSC-Medium;
+    align-items: center;
+    justify-content: center;
     flex: 1;
-    text-align: center;
-    height: 48px;
-    font-size: 34px;
+    height: .48rem;
+    font-size: .34rem;
     color: #333333;
     letter-spacing: 0;
     font-weight: 500;
@@ -131,46 +133,46 @@ export default {
 
 .toto_tips {
   width: 100%;
-  height: 73px;
+  height: .73rem;
   background: rgba(255, 194, 0, 0.1);
   > span {
     display: flex;
     font-family: PingFangSC-Regular;
-    height: 33px;
-    font-size: 24px;
+    min-height: .33rem;
+    font-size: .24rem;
     color: #333333;
     letter-spacing: 0;
     text-align: center;
     font-weight: 400;
-    padding: 20px 30px;
+    padding: .2rem .3rem;
   }
 }
 
 .conversion_input {
-  margin: 20px 30px 30px;
+  margin: .2rem .3rem .3rem;
   background: #ffffff;
-  border-radius: 15px;
-  padding: 30px;
+  border-radius: .15rem;
+  padding: .3rem;
   .balance {
     font-family: PingFangSC-Regular;
-    line-height: 45px;
-    font-size: 32px;
+    line-height: .45rem;
+    font-size: .32rem;
     color: #333333;
     letter-spacing: 0;
     font-weight: 400;
   }
   .conversion_input_info {
     display: flex;
-    height: 104px;
+    height: 1.04rem;
     align-items: center;
-    margin-top: 30px;
-    column-gap: 30px;
-    padding-bottom: 20px;
+    margin-top: .3rem;
+    column-gap: .3rem;
+    padding-bottom: .2rem;
     border-bottom: 1px solid rgba(230, 230, 230, 1);
   }
   .unit {
     font-family: PingFangSC-Regular;
-    font-size: 60px;
+    font-size: .6rem;
     color: #333333;
     letter-spacing: 0;
     text-align: center;
@@ -179,36 +181,36 @@ export default {
   .input {
     font-family: PingFangSC-Regular;
     flex: 1;
-    font-size: 28px;
+    font-size: .28rem;
     color: #cccccc;
     letter-spacing: 0;
     font-weight: 400;
     border: none;
-    height: 40px;
+    height: .4rem;
   }
   .ozcoin {
-    height: 40px;
+    height: .4rem;
     font-family: PingFangSC-Regular;
-    font-size: 28px;
+    font-size: .28rem;
     color: #333333;
     letter-spacing: 0;
     font-weight: 400;
-    margin-top: 20px;
+    margin-top: .2rem;
   }
 }
 
 .btn-box {
-  margin: 30px 30px 0;
-  height: 88px;
+  margin: .3rem .3rem 0;
+  height: .88rem;
 
   .conversion_input_btn {
     font-family: PingFangSC-Regular;
     width: 100%;
     height: 100%;
-    font-size: 28px;
+    font-size: .28rem;
     color: #ffffff;
     background: #0385f2;
-    border-radius: 15px;
+    border-radius: .15rem;
     letter-spacing: 0;
     text-align: center;
     font-weight: 400;

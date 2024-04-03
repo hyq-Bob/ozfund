@@ -31,7 +31,7 @@ export default {};
 <style lang="scss" scoped>
 .zoology_module_one {
   padding-top: 0.6rem;
-  padding: 0.56rem;
+  // padding: 0.56rem;
   background: url("../../../assets/images/zoology/module1.png") no-repeat;
   background-size: 100% 100%;
   svg {

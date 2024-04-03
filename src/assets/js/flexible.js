@@ -13,7 +13,7 @@ function isMobile() {
     var scale = 0;
     var tid;
     var flexible = lib.flexible || (lib.flexible = {});
-    var designWidth = isMobile() ? 750 : 1920
+    var designWidth = isMobile() ? 750 : window.innerWidth
 
     if (metaEl) {
         console.warn('将根据已有的meta标签来设置缩放比例');

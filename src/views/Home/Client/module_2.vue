@@ -2,22 +2,30 @@
   <div class="home_module_two">
     <div class="w" :style="{ alignItems: toggle ? 'flex-end' : 'center' }">
       <div class="home_module_left">
-        <img v-animation class="page_png" :data-gif_url="require('@/assets/images/home/gif/moduleTwo.gif')" alt="" />
+        <img
+          v-animation
+          class="page_png"
+          :data-gif_url="require('@/assets/images/home/gif/moduleTwo.gif')"
+          alt=""
+        />
       </div>
       <div class="home_module_right">
         <h3>{{ $t("home.foundation") }}</h3>
         <!-- <p >{{ $t("home.info") }}</p> -->
-        <clamp :content='$t("home.info")' className="summary" />
+        <clamp :content="$t('home.info')" className="summary" />
         <p>{{ $t("home.webSite") }}</p>
         <div class="button_report_w">
-          <button @click="viewePdf.call(this,'Oz-White-Paper.pdf')">
+          <button @click="viewePdf.call(this, 'Oz-White-Paper.pdf')">
             <!-- <a  target="_blank" href="/static/Oz-White-Paper.pdf"> -->
             {{ $t("home.view") }}{{ $t("home.whitePaper") }}
             <img src="@/assets/images/home/arrow2.png" alt="" />
             <!-- </a> -->
           </button>
           <button class="button_report">
-            <a target="_blank" href="https://beosin.com/audits/Ozfund_202212071800.pdf">
+            <a
+              target="_blank"
+              href="https://beosin.com/audits/Ozfund_202212071800.pdf"
+            >
               {{ $t("home.view") }}{{ $t("home.auditReport") }}
               <img src="@/assets/images/home/arrow22.png" alt="" />
             </a>
@@ -30,24 +38,23 @@
 
 <script>
 import { viewePdf } from "@/utils/base.js";
-import Clamp from '../../components/clamp.vue';
+import Clamp from "../../components/clamp.vue";
 export default {
   components: {
     Clamp,
   },
   data() {
     return {
-      toggle: false
-    }
+      toggle: false,
+    };
   },
   methods: {
     viewePdf,
     isFold(toggle, expanded) {
-      toggle()
-      this.toggle = expanded
-    }
+      toggle();
+      this.toggle = expanded;
+    },
   },
-
 };
 </script>
 
@@ -72,11 +79,12 @@ export default {
     width: 46%;
 
     h3 {
+      font-family: PingFangSC-Medium;
+      letter-spacing: 0;
       font-size: 0.4rem;
       color: #333;
       line-height: 0.44rem;
       font-weight: 500;
-      font-family: "PingFang-Medium";
       margin-bottom: 0.24rem;
     }
 

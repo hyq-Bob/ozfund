@@ -72,7 +72,7 @@
         </div>
         <!-- <p class="graph_time"></p> -->
         <!-- 本体 -->
-        <Chart />
+        <Chart :time="time"/>
       </div>
     </div>
   </div>
@@ -81,6 +81,9 @@
 <script>
 import Clamp from "../../components/clamp.vue";
 import Chart from "../Chart";
+import advancedFormat from 'dayjs/plugin/advancedFormat';
+import dayjs from 'dayjs';
+dayjs.extend(advancedFormat)
 export default {
   components: {
     Chart,
@@ -88,6 +91,7 @@ export default {
   },
   data() {
     return {
+      time:dayjs().subtract(24, 'hour').format('MMM D, YYYY, hh:mm A'),
       viewMoreTwoBoo: false,
       graphTimeKey: "24H",
       grahpTime: [
@@ -101,6 +105,19 @@ export default {
   },
   methods: {
     grahpTimeNav(value) {
+      let flag = value.slice(-1)
+      if(flag == "H"){
+        this.time = dayjs().subtract(24, 'hour').format('MMM D, YYYY, hh:mm A');
+      }
+      if(flag == "W"){
+        this.time = dayjs().subtract(1, 'week').format('MMM D, YYYY, hh:mm A');
+      }
+      if(flag == "M"){
+        this.time = dayjs().subtract(1, 'month').format('MMM D, YYYY, hh:mm A');
+      }
+      if(flag == "Y"){
+        this.time = dayjs().subtract(1, 'year').format('MMM D, YYYY, hh:mm A');
+      }
       this.graphTimeKey = value;
     },
     viewMoreOne() {
@@ -216,27 +233,28 @@ export default {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin: 0.2rem 0;
   padding: 0 0.4rem;
 
   .graph_data_left {
+    display: flex;
     font-family: DINNextW1G;
     color: #333;
+    height: .68rem;
     font-weight: 500;
-    display: flex;
     align-items: flex-end;
 
     .total {
-      font-family: DINNextW1G-Bold;
+      // font-family: DINNextW1G-Bold;
+      // font-family: '.AppleSystemUIFont';
+      line-height: .68rem;
       font-size: 0.4rem;
-      font-weight: inherit;
-      font-weight: 500;
+      font-weight: 400;
       white-space: nowrap;
       margin-right: 0.15rem;
     }
 
     .unit {
-      font-family: AppleSystemUIFont;
+      // font-family: AppleSystemUIFont;
       font-size: 0.2rem;
       color: #333;
       letter-spacing: 0;

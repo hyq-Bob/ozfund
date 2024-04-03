@@ -6,12 +6,31 @@
 import { isMobile } from "@/utils/base";
 const echarts = require("echarts");
 export default {
+  props:{
+    time:{
+      type:String,
+      default:''
+    }
+  },
   data() {
     return {
       pieChart: null,
-      options: {
+    };
+  },
+  watch:{
+    time(){
+      this.initChart();
+    }
+  },
+  mounted() {
+    this.initChart();
+  },
+  methods: {
+    isMobile,
+    initChart() {
+      let options = {
         title: {
-          text: "Jul19,2022,02:12PM",
+          text: this.time,
           padding: [0, isMobile() ? 0 : 40],
           textStyle: {
             color: "#999",
@@ -60,7 +79,7 @@ export default {
 
         series: [
           {
-            data: [820, 932, 901, 934, 1290, 1330, 1320],
+            data: [820, 820, 820, 820, 820, 820, 820],
             type: "line",
             smooth: true,
             showSymbol: false,
@@ -88,18 +107,10 @@ export default {
             },
           },
         ],
-      },
-    };
-  },
-  mounted() {
-    this.initChart();
-  },
-  methods: {
-    isMobile,
-    initChart() {
+      }
       this.$nextTick(() => {
         this.pieChart = echarts.init(this.$refs.chart);
-        this.pieChart.setOption(this.options);
+        this.pieChart.setOption(options);
       });
     },
   },

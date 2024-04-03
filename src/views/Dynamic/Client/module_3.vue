@@ -46,7 +46,7 @@
             </div>
           </li>
         </ul>
-        <div class="icon">
+        <div class="icon" v-if="problemList.length">
           <img src="../imgs/icon.svg" alt="" />
         </div>
       </div>

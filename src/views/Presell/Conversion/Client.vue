@@ -109,7 +109,6 @@ export default {
         if (!this.bo.busd) return message.error(this.$t('tipMessage.successTip'))
         // this.$store.dispatch('Wallet/pcApproveErc20', { type: 'b-o', unit: process.env.NODE_ENV === 'development' ? 'mwei' : 'ether', amount: this.bo.busd, cb: this.resHint })
         this.exchangeUsdtToToto({amount:this.bo.ozc}).then(({success}) =>{
-          console.log('res>>>>>: ', res);
           if(success){
             this.resHint()
           }
@@ -117,11 +116,11 @@ export default {
         })
       }
       if (this.type === 'o-b') {
-        if (!this.ob.ozc) return message.error(this.$t('tipMessage.successTip'))
+        if (!this.bo.ozc) return message.error(this.$t('tipMessage.successTip'))
         // 加权限用这个
         // this.$store.dispatch('Wallet/pcApproveErc20', { type: 'o-b', unit: 'ether', amount: this.ob.ozc })
         // 不加权限用这个
-        this.$store.dispatch("Wallet/pcReverseExchangeOZCoin", { unit: "ether", amount: this.ob.ozc, cb: this.resHint });
+        this.$store.dispatch("Wallet/pcReverseExchangeOZCoin", { unit: "ether", amount: this.bo.ozc, cb: this.resHint });
       }
     },
     mobileConversionBtn() {
@@ -152,7 +151,7 @@ export default {
 };
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 ._conversion {
   width: var(--content-w);
   padding: .37rem .4rem;
@@ -210,7 +209,6 @@ export default {
   }
 
   input {
-    font-family: DINNextW1G-Bold;
     font-size: .16rem;
     color: #666;
     font-weight: 500;

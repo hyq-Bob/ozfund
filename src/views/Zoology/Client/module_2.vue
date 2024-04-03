@@ -56,6 +56,8 @@ export default {
     font-family: PingFangSC-Medium;
 
     h3 {
+      font-family: PingFangSC-Medium;
+      letter-spacing: 0;
       font-size: 0.4rem;
       color: #333;
       line-height: 0.68rem;

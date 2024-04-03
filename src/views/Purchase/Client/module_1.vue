@@ -4,7 +4,7 @@
       <div class="purchase_module_w">
         <div class="purchase_module_left">
           <h3 class="max_tit">
-            {{ $t('purchaseAndPledge.purchase') }}
+            {{ $t('purchaseAndPledge.purchase') }}{{$t('global.ozc')  }}
           </h3>
           <!-- <p v-html="$t('purchaseAndPledge.purchaseInfo')"></p> -->
 

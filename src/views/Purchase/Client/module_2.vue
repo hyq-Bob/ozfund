@@ -192,7 +192,7 @@ export default {
         type: 'hint', // hint || connectWallet
         status: e ? 1 : 2, // 1是成功 2是失败
         show: true,
-        txt: e ? this.$t('extractTxt2') : this.$t('tipMessage.pledgeRes'),
+        txt: e ? this.$t('tipMessage.pledgeTips') : this.$t('tipMessage.pledgeRes'),
         cb: null
       }
     },

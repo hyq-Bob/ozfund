@@ -2,7 +2,7 @@
  * @Author: hyq_bob bob.he@autech.one
  * @Date: 2024-03-25 18:53:19
  * @LastEditors: hyq_bob bob.he@autech.one
- * @LastEditTime: 2024-04-03 11:01:11
+ * @LastEditTime: 2024-04-03 12:02:53
  * @FilePath: /ozfund-mobile/src/store/modules/metamask.js
  * @Description: 钱包相关操作
  */
@@ -20,6 +20,7 @@ import {
   getChainId,
   getChainNonce
 } from "@/utils/metamask.js";
+import dayjs from "dayjs";
 const state = {
   busdAddr: process.env.VUE_APP_BUSD_ADDR,
   ozcoinAddr: process.env.VUE_APP_OZCOIN_ADDR,
@@ -151,7 +152,7 @@ const actions = {
       stakeAddr = await signer.getAddress();
     }
     const val = EthTransactionWei(amount);
-    let deadline = new Date().getTime() + 360000;
+    let deadline = dayjs().add(1,'day').unix(); // 获取当前时间+1天
     let nonce = await getChainNonce({ ChainAddr: state.ozcoinAddr, ChainAbi: erc20Abi, schedulerAddr: stakeAddr, signer })
     console.log('nonce: ', nonce);
     // 智能合约地址和ABI
@@ -167,9 +168,13 @@ const actions = {
       deadline,
       chainId,
       nonce)
+      console.log('signature》》》》》: ', signature);
     let r = signature.slice(0, 66);
+    console.log('r: ', r);
     let s = "0x" + signature.slice(66, 130);
+    console.log('s: ', s);
     let v = "0x" + signature.slice(130, 132);
+    console.log('v: ', v);
     // 创建合约实例
     const stakingContract = new ethers.Contract(stakingContractAddress, stakingContractABI, signer);
     try {

@@ -2,7 +2,7 @@
  * @Author: hyq_bob bob.he@autech.one
  * @Date: 2024-03-25 19:06:54
  * @LastEditors: hyq_bob bob.he@autech.one
- * @LastEditTime: 2024-04-03 10:58:03
+ * @LastEditTime: 2024-04-03 11:59:00
  * @FilePath: /ozfund-mobile/src/utils/metamask.js
  * @Description: metamask相关
  */
@@ -120,6 +120,8 @@ async function signatureByEIP712(tokenName,verifyAddr,owner,spender,val,deadline
     domain,
     message
   })
+  
+  console.log('签名对应的参数》》》》: ', paramsStr);
   let signature = await ethereum.request({
     method: 'eth_signTypedData_v4',
     params: [owner, paramsStr],

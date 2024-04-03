@@ -2,7 +2,7 @@
  * @Author: hyq_bob bob.he@autech.one
  * @Date: 2024-03-25 18:53:19
  * @LastEditors: hyq_bob bob.he@autech.one
- * @LastEditTime: 2024-04-03 10:51:23
+ * @LastEditTime: 2024-04-03 11:01:11
  * @FilePath: /ozfund-mobile/src/store/modules/metamask.js
  * @Description: 钱包相关操作
  */
@@ -38,7 +38,6 @@ const actions = {
         // 使用ethers.js请求账户信息
         let provider = await getProvider()
         accounts = await provider.listAccounts();
-        console.log('accounts: ', accounts);
       } catch (error) {
         console.error("Error fetching accounts: ", error);
       }
@@ -63,12 +62,12 @@ const actions = {
     // 调用兑换函数
     try {
       const tx = await exchangeContract.exchange(exchangeAddr, exchangeContractAddress, Erc20Transaction(amount.toString()), {
-        gasLimit: ethers.utils.hexlify(gasLimit) // 设置为1000000，你需要根据实际情况调整这个值
+        gasLimit: ethers.utils.hexlify(gasLimit)
       });
       await tx.wait(); // 等待交易确认
-      return Promise.resolve({ success: true })
+      return Promise.resolve({ success: true, data:tx })
     } catch (error) {
-      return Promise.resolve({ success: false })
+      return Promise.resolve({ success: false, data:error })
     }
     // console.log(`交易成功！交易哈希：${tx.hash}`);
   },
@@ -87,12 +86,12 @@ const actions = {
     // 调用兑换函数
     try {
       const tx = await exchangeContract.exchange(exchangeAddr, exchangeContractAddress, Erc20Transaction(amount.toString()), {
-        gasLimit: ethers.utils.hexlify(gasLimit) // 设置为1000000，你需要根据实际情况调整这个值
+        gasLimit: ethers.utils.hexlify(gasLimit)
       });
       await tx.wait(); // 等待交易确认
-      return Promise.resolve({ success: true })
+      return Promise.resolve({ success: true, data:tx })
     } catch (error) {
-      return Promise.resolve({ success: false })
+      return Promise.resolve({ success: false, data:error })
     }
   },
   //  OZC 兑换 USDT
@@ -110,12 +109,12 @@ const actions = {
     // 调用兑换函数
     try {
       const tx = await exchangeContract.exchange(exchangeAddr, exchangeContractAddress, Erc20Transaction(amount.toString()), {
-        gasLimit: ethers.utils.hexlify(gasLimit) // 设置为1000000，你需要根据实际情况调整这个值
+        gasLimit: ethers.utils.hexlify(gasLimit)
       });
       await tx.wait();
-      return Promise.resolve({ success: true })
+      return Promise.resolve({ success: true, data:tx })
     } catch (error) {
-      return Promise.resolve({ success: false })
+      return Promise.resolve({ success: false, data:error })
     }// 等待交易确认
   },
   // 质押
@@ -133,18 +132,18 @@ const actions = {
     // 调用质押函数
     try {
       const tx = await stakingContract.stakeAlone(EthTransactionWei(amount), {
-        gasLimit: ethers.utils.hexlify(gasLimit) // 设置为1000000，你需要根据实际情况调整这个值
+        gasLimit: ethers.utils.hexlify(gasLimit)
       });
       await tx.wait();
       console.log('质押成功！');
-      return Promise.resolve({ success: true })
+      return Promise.resolve({ success: true, data:tx })
     } catch (error) {
       console.error('质押失败：', error);
-      return Promise.resolve({ success: false })
+      return Promise.resolve({ success: false , data:error})
     }// 等待交易确认
   },
   // 质押2
-  async stakeCoin2({ state }, { amount, stakeAddr, gasLimit}) {
+  async stakeCoin2({ state }, { amount, stakeAddr, gasLimit }) {
     gasLimit = gasLimit || state.gasLimit
     const provider = await getProvider()
     const signer = provider.getSigner();
@@ -153,7 +152,7 @@ const actions = {
     }
     const val = EthTransactionWei(amount);
     let deadline = new Date().getTime() + 360000;
-    let nonce =  await getChainNonce({ChainAddr:state.ozcoinAddr, ChainAbi:erc20Abi, schedulerAddr:stakeAddr,signer})
+    let nonce = await getChainNonce({ ChainAddr: state.ozcoinAddr, ChainAbi: erc20Abi, schedulerAddr: stakeAddr, signer })
     console.log('nonce: ', nonce);
     // 智能合约地址和ABI
     const stakingContractAddress = state.stakeAddr;  // 链地址
@@ -201,12 +200,12 @@ const actions = {
     // 调用兑换函数
     try {
       const tx = await exchangeContract.exchange(exchangeAddr, exchangeContractAddress, Erc20Transaction(amount.toString()), {
-        gasLimit: ethers.utils.hexlify(gasLimit) // 设置为1000000，你需要根据实际情况调整这个值
+        gasLimit: ethers.utils.hexlify(gasLimit)
       });
       await tx.wait(); // 等待交易确认
-      return Promise.resolve({ success: true })
+      return Promise.resolve({ success: true, data:tx })
     } catch (error) {
-      return Promise.resolve({ success: false })
+      return Promise.resolve({ success: false, data:error })
     }
   },
   //   TOTO  兑换 USDT
@@ -224,12 +223,12 @@ const actions = {
     // 调用兑换函数
     try {
       const tx = await exchangeContract.reverseExchange(exchangeAddr, exchangeContractAddress, Erc20Transaction(amount.toString()), {
-        gasLimit: ethers.utils.hexlify(gasLimit) // 设置为1000000，你需要根据实际情况调整这个值
+        gasLimit: ethers.utils.hexlify(gasLimit)
       });
       await tx.wait(); // 等待交易确认
-      return Promise.resolve({ success: true })
+      return Promise.resolve({ success: true, data:tx })
     } catch (error) {
-      return Promise.resolve({ success: false })
+      return Promise.resolve({ success: false, data:error })
     }
   },
 }

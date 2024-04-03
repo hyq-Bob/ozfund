@@ -2,7 +2,7 @@
  * @Author: hyq_bob bob.he@autech.one
  * @Date: 2024-03-25 19:06:54
  * @LastEditors: hyq_bob bob.he@autech.one
- * @LastEditTime: 2024-04-03 10:56:36
+ * @LastEditTime: 2024-04-03 10:58:03
  * @FilePath: /ozfund-mobile/src/utils/metamask.js
  * @Description: metamask相关
  */
@@ -142,6 +142,7 @@ async function getChainNonce({ChainAddr, ChainAbi, schedulerAddr, signer}){
   const nonce = bigNumber.toNumber();
   return nonce
 }
+// 十六进制转十进制
 function BigNumberToNum(hexValue, unit = "ether") {
   const bigNumber = ethers.BigNumber.from(hexValue).toString();
   return ethers.utils.formatUnits(bigNumber, unit) * 1;

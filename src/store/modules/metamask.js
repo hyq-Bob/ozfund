@@ -2,7 +2,7 @@
  * @Author: hyq_bob bob.he@autech.one
  * @Date: 2024-03-25 18:53:19
  * @LastEditors: hyq_bob bob.he@autech.one
- * @LastEditTime: 2024-04-03 10:41:29
+ * @LastEditTime: 2024-04-03 10:51:23
  * @FilePath: /ozfund-mobile/src/store/modules/metamask.js
  * @Description: 钱包相关操作
  */
@@ -24,7 +24,8 @@ const state = {
   busdAddr: process.env.VUE_APP_BUSD_ADDR,
   ozcoinAddr: process.env.VUE_APP_OZCOIN_ADDR,
   totoAddr: process.env.VUE_APP_TOTO_ADDR,
-  stakeAddr: process.env.VUE_APP_STAKE_ADDR
+  stakeAddr: process.env.VUE_APP_STAKE_ADDR,
+  gasLimit: +process.env.VUE_APP_GAS_LIMIT
 };
 const getters = {};
 const actions = {
@@ -48,7 +49,8 @@ const actions = {
     return accounts.length > 0 ? accounts[0] : null;
   },
   //  TOTO 兑换 OZC
-  async exchangeTOTOforOzcoin({ state }, { amount, exchangeAddr, gasLimit = 1000000 }) {
+  async exchangeTOTOforOzcoin({ state }, { amount, exchangeAddr, gasLimit }) {
+    gasLimit = gasLimit || state.gasLimit
     let addressValidate = isValidAddress(exchangeAddr);
     if (!addressValidate) return;
     let provider = await getProvider()
@@ -71,7 +73,8 @@ const actions = {
     // console.log(`交易成功！交易哈希：${tx.hash}`);
   },
   //  USDT 兑换 OZC
-  async exchangeUsdtForOzc({ state }, { amount, exchangeAddr, gasLimit = 1000000 }) {
+  async exchangeUsdtForOzc({ state }, { amount, exchangeAddr, gasLimit }) {
+    gasLimit = gasLimit || state.gasLimit
     let addressValidate = isValidAddress(exchangeAddr);
     if (!addressValidate) return;
     let provider = await getProvider()
@@ -93,7 +96,8 @@ const actions = {
     }
   },
   //  OZC 兑换 USDT
-  async exchangeOzcForUsdt({ state }, { amount, exchangeAddr, gasLimit = 1000000 }) {
+  async exchangeOzcForUsdt({ state }, { amount, exchangeAddr, gasLimit }) {
+    gasLimit = gasLimit || state.gasLimit
     let addressValidate = isValidAddress(exchangeAddr);
     if (!addressValidate) return;
     let provider = await getProvider()
@@ -115,7 +119,8 @@ const actions = {
     }// 等待交易确认
   },
   // 质押
-  async stakeCoin({ state }, { amount, stakeAddr, gasLimit = 1000000 }) {
+  async stakeCoin({ state }, { amount, stakeAddr, gasLimit }) {
+    gasLimit = gasLimit || state.gasLimit
     let addressValidate = isValidAddress(stakeAddr);
     if (!addressValidate) return Promise.reject('address is null');
     let provider = await getProvider()
@@ -139,7 +144,8 @@ const actions = {
     }// 等待交易确认
   },
   // 质押2
-  async stakeCoin2({ state }, { amount, stakeAddr, gasLimit = 100000 }) {
+  async stakeCoin2({ state }, { amount, stakeAddr, gasLimit}) {
+    gasLimit = gasLimit || state.gasLimit
     const provider = await getProvider()
     const signer = provider.getSigner();
     if (!stakeAddr) {
@@ -181,7 +187,8 @@ const actions = {
 
   },
   //  USDT 兑换 TOTO
-  async exchangeUsdtToTOTO({ state }, { amount, exchangeAddr, gasLimit = 1000000 }) {
+  async exchangeUsdtToTOTO({ state }, { amount, exchangeAddr, gasLimit }) {
+    gasLimit = gasLimit || state.gasLimit
     let addressValidate = isValidAddress(exchangeAddr);
     if (!addressValidate) return;
     let provider = await getProvider()
@@ -203,7 +210,8 @@ const actions = {
     }
   },
   //   TOTO  兑换 USDT
-  async exchangeTOTOToUsdt({ state }, { amount, exchangeAddr, gasLimit = 1000000 }) {
+  async exchangeTOTOToUsdt({ state }, { amount, exchangeAddr, gasLimit }) {
+    gasLimit = gasLimit || state.gasLimit
     let addressValidate = isValidAddress(exchangeAddr);
     if (!addressValidate) return;
     let provider = await getProvider()

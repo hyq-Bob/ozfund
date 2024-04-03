@@ -2,7 +2,7 @@
  * @Author: hyq_bob bob.he@autech.one
  * @Date: 2024-03-25 19:06:54
  * @LastEditors: hyq_bob bob.he@autech.one
- * @LastEditTime: 2024-04-03 10:23:49
+ * @LastEditTime: 2024-04-03 10:44:01
  * @FilePath: /ozfund-mobile/src/utils/metamask.js
  * @Description: metamask相关
  */
@@ -71,49 +71,7 @@ function Erc20Transaction(amount, decimals = 18) {
   return ethers.utils.parseUnits(amount, decimals).toString();
 }
 // 使用EIP712签名
-async function signatureByEIP712(
-  tokenName,
-  verifyAddr,
-  owner,
-  spender,  // 0x5Fb222870337A34f01bF6389E2fC3Ab317f92f2a
-  val,
-  deadline,
-  chainId,
-  nonce
-) {
-
-
-//  let objStr =  {
-//     "types": {
-//       "EIP712Domain": [
-//         { "name": "name", "type": "string" },
-//         { "name": "version", "type": "string" },
-//         { "name": "chainId", "type": "uint256" },
-//         { "name": "verifyingContract", "type": "address" }
-//       ],
-//         "Permit": [
-//           { "name": "owner", "type": "address" },
-//           { "name": "spender", "type": "address" },
-//           { "name": "value", "type": "uint256" },
-//           { "name": "nonce", "type": "uint256" },
-//           { "name": "deadline", "type": "uint256" }
-//         ]
-//     },
-//     "primaryType": "Permit",
-//       "domain": {
-//       "name": "OZCoin",
-//         "version": "1",
-//         "chainId": "0xaa36a7",
-//           "verifyingContract": "0x6Eb1b1b7e34Ac61A2a82d20981a1aC9E4D9f8eEb"
-//     },
-//     "message": {
-//       "owner": "0xcb43d8404a74da11857e2563477f888119c8a441",
-//         "spender": "0x5Fb222870337A34f01bF6389E2fC3Ab317f92f2a",
-//         "value": "1000000000000000000",
-//         "nonce": nonce,
-//           "deadline": deadline
-//     }
-//   }
+async function signatureByEIP712(tokenName,verifyAddr,owner,spender,val,deadline,chainId,nonce) {
   let types = {
     EIP712Domain: [
       { name: "name", type: "string" },
@@ -131,7 +89,7 @@ async function signatureByEIP712(
   };
 
   let domain = {
-    name: 'Ozcoin',
+    name: tokenName,
     version: "1",
     chainId: chainId,
     verifyingContract: verifyAddr,
@@ -164,12 +122,23 @@ async function signatureByEIP712(
 function getChainId() {
   return ethereum.request({ method: "eth_chainId" });
 }
-
+// 获取对应链的Nonce
+async function getChainNonce({ChainAddr, ChainAbi, schedulerAddr, signer}){
+  const contract = new ethers.Contract(ChainAddr, ChainAbi, signer)
+  const nonce1 = await contract.nonces(schedulerAddr)
+  const hexString = ethers.utils.hexlify(nonce1);
+  // 将十六进制字符串转换为BigNumber对象
+  const bigNumber = ethers.BigNumber.from(hexString);
+  // 将BigNumber对象转换为JavaScript原生的数字类型（uint256）
+  const nonce = bigNumber.toNumber();
+  return nonce
+}
 function BigNumberToNum(hexValue, unit = "ether") {
   const bigNumber = ethers.BigNumber.from(hexValue).toString();
   return ethers.utils.formatUnits(bigNumber, unit) * 1;
 }
 export {
+  getChainNonce,
   BigNumberToNum,
   connectMetaMask,
   getProvider,

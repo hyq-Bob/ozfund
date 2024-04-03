@@ -1,8 +1,8 @@
 /*
  * @Author: hyq_bob bob.he@autech.one
  * @Date: 2024-03-25 18:53:19
- * @LastEditors: heyongqiang 1498833800@qq.com
- * @LastEditTime: 2024-04-03 01:10:45
+ * @LastEditors: hyq_bob bob.he@autech.one
+ * @LastEditTime: 2024-04-03 10:41:29
  * @FilePath: /ozfund-mobile/src/store/modules/metamask.js
  * @Description: 钱包相关操作
  */
@@ -10,7 +10,6 @@ import { ethers } from "ethers";
 // import Web3 from "web3";
 import ozcoinExpandAbi from "@/abi/ozcoinExpandAbi.json";
 import erc20Abi from "@/abi/erc20Abi.json";
-import totoAbi from "@/abi/totoExpandAbi.json";
 import ozcoinStakeExpandAbi from "@/abi/ozcoinStakeExpandAbi.json";
 import {
   getProvider,
@@ -18,13 +17,14 @@ import {
   Erc20Transaction,
   EthTransactionWei,
   signatureByEIP712,
-  BigNumberToNum,
+  getChainId,
+  getChainNonce
 } from "@/utils/metamask.js";
 const state = {
   busdAddr: process.env.VUE_APP_BUSD_ADDR,
   ozcoinAddr: process.env.VUE_APP_OZCOIN_ADDR,
   totoAddr: process.env.VUE_APP_TOTO_ADDR,
-  stakeAddr:process.env.VUE_APP_STAKE_ADDR
+  stakeAddr: process.env.VUE_APP_STAKE_ADDR
 };
 const getters = {};
 const actions = {
@@ -142,36 +142,19 @@ const actions = {
   async stakeCoin2({ state }, { amount, stakeAddr, gasLimit = 100000 }) {
     const provider = await getProvider()
     const signer = provider.getSigner();
-    if(!stakeAddr){
+    if (!stakeAddr) {
       stakeAddr = await signer.getAddress();
     }
     const val = EthTransactionWei(amount);
-    const contract = new ethers.Contract(state.ozcoinAddr,erc20Abi,signer)
     let deadline = new Date().getTime() + 360000;
-    const nonce1 = await contract.nonces(stakeAddr)
-
-    const hexString = ethers.utils.hexlify(nonce1);
-    console.log("Hex String:", hexString);
-    
-    // 将十六进制字符串转换为BigNumber对象
-    const bigNumber = ethers.BigNumber.from(hexString);
-    console.log("BigNumber:", bigNumber);
-    
-    // 将BigNumber对象转换为JavaScript原生的数字类型（uint256）
-    const nonce = bigNumber.toNumber();
+    let nonce =  await getChainNonce({ChainAddr:state.ozcoinAddr, ChainAbi:erc20Abi, schedulerAddr:stakeAddr,signer})
     console.log('nonce: ', nonce);
-
-
-    // const stakingContract1 = new ethers.Contract(state.totoAddr, totoAbi, signer);
-  //  let a =  await stakingContract1.ozcoinStake()
-  //  console.log('a>>>>: ', a);
-
- // 智能合约地址和ABI
- const stakingContractAddress = state.stakeAddr;  // 链地址
- const stakingContractABI = ozcoinStakeExpandAbi;
-let chainId = await ethereum.request({ method: "eth_chainId" });
+    // 智能合约地址和ABI
+    const stakingContractAddress = state.stakeAddr;  // 链地址
+    const stakingContractABI = ozcoinStakeExpandAbi;
+    let chainId = await getChainId();
     let signature = await signatureByEIP712(
-      'OZCoin',
+      'Ozcoin',
       state.ozcoinAddr, // ozc链地址
       stakeAddr, // 调用者地址
       stakingContractAddress, //质押链
@@ -180,24 +163,20 @@ let chainId = await ethereum.request({ method: "eth_chainId" });
       chainId,
       nonce)
     let r = signature.slice(0, 66);
-    console.log('r: ', r);
     let s = "0x" + signature.slice(66, 130);
-    console.log('s: ', s);
     let v = "0x" + signature.slice(130, 132);
-    console.log('v: ', v);
-   
     // 创建合约实例
     const stakingContract = new ethers.Contract(stakingContractAddress, stakingContractABI, signer);
     try {
-      const tx = await stakingContract.stake(val,nonce, deadline, v, r, s, {
+      const tx = await stakingContract.stake(val, nonce, deadline, v, r, s, {
         gasLimit: ethers.utils.hexlify(gasLimit)
       });
       await tx.wait();
       console.log('质押成功！');
-      return Promise.resolve({ success: true , data:tx})
+      return Promise.resolve({ success: true, data: tx })
     } catch (error) {
       console.error('质押失败：', error);
-      return Promise.resolve({ success: false,data:error })
+      return Promise.resolve({ success: false, data: error })
     }
 
   },

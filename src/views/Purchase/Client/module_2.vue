@@ -60,7 +60,7 @@
             <div class="modal_input">
               <p>
                 {{ $t("purchaseAndPledge.quantity") }}({{ ozcBalance || 0 }}{{ $t("global.ozc") }})
-                <i @click="()=> pledgeNumber = ozcBalance" class="all_pledge_number">
+                <i @click="() => pledgeNumber = ozcBalance" class="all_pledge_number">
                   {{ $t("global.all") }}
                 </i>
               </p>
@@ -112,7 +112,7 @@
         </div>
       </div>
     </div>
-    <hint ref="hint"/>
+    <hint ref="hint" />
   </div>
 </template>
 
@@ -122,9 +122,9 @@ import Hint from "@/components/Hint/index.vue";
 import { mapGetters, mapActions } from "vuex";
 import Clamp from '../../components/clamp.vue';
 export default {
-  components: { Clamp,Hint },
+  components: { Clamp, Hint },
   computed: {
-    ...mapGetters("Wallet", ["stakeRate", "ozcStakeAmount", "totoStakeAmount", "address",'ozcBalance']),
+    ...mapGetters("Wallet", ["stakeRate", "ozcStakeAmount", "totoStakeAmount", "address", 'ozcBalance']),
   },
   data() {
     return {
@@ -136,11 +136,12 @@ export default {
     };
   },
   methods: {
-    ...mapActions('Metamask',['stakeCoin2']),
+    ...mapActions('Metamask', ['stakeCoin2']),
+    ...mapActions('Wallet', ['getMobileBalance']),
     extractBtn() {
       if (!Number(this.totoStakeAmount)) { // 不能提取
         this.closeModal()
-        this.$refs.hint.modal =  {
+        this.$refs.hint.modal = {
           title: this.$t('tipMessage.tip'),
           type: 'hint', // hint || connectWallet
           status: 3, // 1是成功 2是失败 3是警告
@@ -152,22 +153,18 @@ export default {
       }
       this.mobileExtractBtn()
     },
-     // 质押
-     pledgeBtn() {
-      if (this.pledgeNumber > this.ozcBalance) return message.error(this.$t('tipMessage.successTip'))
-      this.mobilePledgeBtn()
+    // 质押
+    pledgeBtn() {
+      if (!this.pledgeNumber || (this.pledgeNumber > this.ozcBalance)) return message.error(this.$t('tipMessage.successTip'))
+      this.stakeCoin2({ amount: this.pledgeNumber }).then(({ success }) => {
+        this.resHint2(success)
+        this.getMobileBalance({key:'ozcBalance', unit:'ether'})
+      })
     },
     closeModal() {
       this.modal = { show: false, key: "" }
     },
-    mobilePledgeBtn() {
-      if (!this.pledgeNumber) return message.error(this.$t('tipMessage.successTip'))
-      // this.$store.dispatch('Wallet/mobileStake', { unit: 'ether', amount: this.pledgeNumber, cb: this.resHint })
-      // this.$store.dispatch('Wallet/pcStake', { unit: 'ether', amount: this.pledgeNumber, cb: this.resHint })
-    this.stakeCoin2({amount: this.pledgeNumber}).then(({success})=>{
-        this.resHint2(success)
-    })
-    },
+
     mobileExtractBtn() {
       this.$store.dispatch('Wallet/mobileRedemption', { cb: this.resHint2 })
     },
@@ -176,7 +173,7 @@ export default {
     },
     resHint(e) {
       this.closeModal()
-      this.$refs.hint.modal =  {
+      this.$refs.hint.modal = {
         title: this.$t('tipMessage.tip'),
         type: 'hint', // hint || connectWallet
         status: e === 'success' ? 1 : 2, // 1是成功 2是失败
@@ -187,7 +184,7 @@ export default {
     },
     resHint2(e) {
       this.closeModal()
-      this.$refs.hint.modal =  {
+      this.$refs.hint.modal = {
         title: this.$t('tipMessage.tip'),
         type: 'hint', // hint || connectWallet
         status: e ? 1 : 2, // 1是成功 2是失败

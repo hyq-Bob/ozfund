@@ -4,7 +4,7 @@
         <div class="conversion_info">
           <div class="conversion_info_top">
             <p>{{ $t('purchaseAndPledge.from') }}</p>
-            <span v-if="!authorizationStauts">{{ $t('purchaseAndPledge.quantity') }}：
+            <span>{{ $t('purchaseAndPledge.quantity') }}：
               <i class="busd_number">
                 {{ (authorizationStauts ? ozcBalance : busdBalance) || 0 }}
               </i>
@@ -13,7 +13,7 @@
           </div>
           <div class="conversion_info_input">
             <p>{{ authorizationStauts ? transitionLange('toto') : transitionLange('busd') }}</p>
-            <input v-model="bo[authorizationStauts ?  transitionLange('ozc', true) : transitionLange('busd', true)]" id="usdt" type="number" placeholder="0" />
+            <input :readonly="disabledFn()" v-model="bo[!authorizationStauts ?  'busd' : 'ozc' ]" type="number" placeholder="0" />
           </div>
         </div>
         <div @click="transitionBtn" class="conversion_icon">
@@ -22,7 +22,7 @@
         <div class="conversion_info">
           <div class="conversion_info_top">
             <p>{{ $t('purchaseAndPledge.to') }}</p>
-            <span v-if="authorizationStauts">{{ $t('purchaseAndPledge.quantity') }}：
+            <span >{{ $t('purchaseAndPledge.quantity') }}：
               <i class="ozc_number">
                 {{ (authorizationStauts ? busdBalance : ozcBalance) || 0 }}
                 {{ authorizationStauts ? transitionLange('busd') :  transitionLange('toto') }}
@@ -31,12 +31,12 @@
           </div>
           <div class="conversion_info_input">
             <p>{{ authorizationStauts ? "BUSD" : "TOTO" }}</p>
-            <input v-model="bo[authorizationStauts ? transitionLange('busd', true) : transitionLange('ozc', true)]" readonly id="ozc" type="number" placeholder="0" />
+            <input :readonly="!disabledFn()" v-model="bo[!authorizationStauts ? 'ozc' :'busd']"  type="number" placeholder="0" />
           </div>
         </div>
       </div>
-      <button @click="conversionBtn" id="conversionBtn" class="conversion_btn">
-        {{ $t('home.exchange') }}
+      <button @click="conversionBtn" class="conversion_btn">
+        {{ $t('home.exchange') }} 33
       </button>
     </div>
 </template>
@@ -55,9 +55,28 @@ export default {
     };
   },
   computed: {
-    ...mapGetters('Wallet', ['busdBalance', 'ozcBalance', 'clientType', 'address'])
+    ...mapGetters('Wallet', ['busdBalance', 'ozcBalance', 'clientType', 'address']),
+  },
+  watch:{
+    // type--》 o-b
+    'bo.ozc'(newVal){
+      this.bo.busd = newVal
+    },
+    'bo.busd'(newVal){
+        this.bo.ozc = newVal
+    }
+    
   },
   methods: {
+    disabledFn(){
+      if(!this.authorizationStauts && this.type == 'b-o'){
+        return false
+      }
+      if(this.authorizationStauts  && this.type == 'o-b'){
+        return false
+      }
+      return true
+    },
     transitionLange(tag,isLowerCase=false){
       tag=`global.${tag}`
       let name = this.$t(tag)
@@ -73,6 +92,8 @@ export default {
         this.type = "b-o";
         this.authorizationStauts = false
       }
+      this.bo={busd: null, ozc: null}
+      this.ob={busd: null, ozc: null}
     },
     conversionBtn() {
       if (!this.address) return message.error(this.$t('global.pleses')+this.$t('global.connectWallet'))
@@ -94,6 +115,9 @@ export default {
       }
     },
     mobileConversionBtn() {
+      console.log('this.type: ', this.type);
+      console.log('this.bo: ', this.bo);
+      console.log('this.bo: ', this.ob);
       if (this.type === 'b-o') {
         if (!this.bo.busd) return message.error(this.$t('tipMessage.successTip'))
         this.$store.dispatch('Wallet/mobileExchangeOZCoin', { type: 'b-o', unit: process.env.NODE_ENV === 'development' ? 'mwei' : 'ether', amount: this.bo.busd, cb: this.resHint })

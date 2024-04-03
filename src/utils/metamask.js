@@ -2,7 +2,7 @@
  * @Author: hyq_bob bob.he@autech.one
  * @Date: 2024-03-25 19:06:54
  * @LastEditors: hyq_bob bob.he@autech.one
- * @LastEditTime: 2024-04-03 10:44:01
+ * @LastEditTime: 2024-04-03 10:56:36
  * @FilePath: /ozfund-mobile/src/utils/metamask.js
  * @Description: metamask相关
  */
@@ -70,7 +70,18 @@ function EthTransactionWei(amount) {
 function Erc20Transaction(amount, decimals = 18) {
   return ethers.utils.parseUnits(amount, decimals).toString();
 }
-// 使用EIP712签名
+/**
+ * @summary 使用EIP712签名
+ * @param {*} tokenName 应用名称
+ * @param {*} verifyAddr  ozc链地址
+ * @param {*} owner  调用者地址
+ * @param {*} spender  质押链
+ * @param {*} val  质押数据
+ * @param {*} deadline 随机数
+ * @param {*} chainId 链ID
+ * @param {*} nonce 链nonce
+ * @returns 签名字符串
+ */
 async function signatureByEIP712(tokenName,verifyAddr,owner,spender,val,deadline,chainId,nonce) {
   let types = {
     EIP712Domain: [
@@ -109,13 +120,11 @@ async function signatureByEIP712(tokenName,verifyAddr,owner,spender,val,deadline
     domain,
     message
   })
-  console.log('paramsStr: ', paramsStr);
   let signature = await ethereum.request({
     method: 'eth_signTypedData_v4',
     params: [owner, paramsStr],
     from:owner
   });
-  console.log("EIP712签名>>>>: ", await signature);
   return signature;
 }
 // 获取链ID

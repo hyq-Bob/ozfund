@@ -2,7 +2,7 @@
  * @Author: hyq_bob bob.he@autech.one
  * @Date: 2024-03-25 18:53:19
  * @LastEditors: hyq_bob bob.he@autech.one
- * @LastEditTime: 2024-04-03 12:02:53
+ * @LastEditTime: 2024-04-03 15:25:29
  * @FilePath: /ozfund-mobile/src/store/modules/metamask.js
  * @Description: 钱包相关操作
  */
@@ -22,7 +22,7 @@ import {
 } from "@/utils/metamask.js";
 import dayjs from "dayjs";
 const state = {
-  busdAddr: process.env.VUE_APP_BUSD_ADDR,
+  usdtAddr: process.env.VUE_APP_USDT_ADDR,
   ozcoinAddr: process.env.VUE_APP_OZCOIN_ADDR,
   totoAddr: process.env.VUE_APP_TOTO_ADDR,
   stakeAddr: process.env.VUE_APP_STAKE_ADDR,
@@ -103,7 +103,7 @@ const actions = {
     let provider = await getProvider()
     const signer = provider.getSigner(); // 签名
     // 智能合约地址和ABI
-    const exchangeContractAddress = state.busdAddr;
+    const exchangeContractAddress = state.usdtAddr;
     const exchangeContractABI = erc20Abi;
     // 创建合约实例
     const exchangeContract = new ethers.Contract(exchangeContractAddress, exchangeContractABI, signer);

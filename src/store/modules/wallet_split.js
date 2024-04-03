@@ -1,13 +1,15 @@
 import { ethers } from "ethers";
 import ozcoinExpandAbi from "@/abi/ozcoinExpandAbi.json";
 import erc20Abi from "@/abi/erc20Abi.json";
+import totoAbi from "@/abi/totoExpandAbi.json";
 // import ozcoinStakeExpandAbi from "@/abi/ozcoinStakeExpandAbi.json";
-import { getProvider, EthTransactionWei,BigNumberToNum } from "@/utils/metamask.js";
+import { getProvider, EthTransactionWei,BigNumberToNum,Erc20Transaction } from "@/utils/metamask.js";
 const state = {
-  busdAddr: process.env.VUE_APP_BUSD_ADDR,
+  // busdAddr: process.env.VUE_APP_BUSD_ADDR,
   ozcoinAddr: process.env.VUE_APP_OZCOIN_ADDR,
   totoAddr: process.env.VUE_APP_TOTO_ADDR,
   usdtAddr: process.env.VUE_APP_USDT_ADDR,
+  gasLimit: +process.env.VUE_APP_GAS_LIMIT,
   ozcMarketCap:0,
   totoMarketCap:0,
   totoDestroy:0,
@@ -32,7 +34,8 @@ const mutations ={
 }
 const actions = {
   // USDT 转 OZC
-  async approveAndExchange({ state }, { amount, gasLimit = 1000000 }) {
+  async approveAndExchange({ state }, { amount, gasLimit }) {
+    gasLimit = gasLimit || state.gasLimit
     // 连接到 Metamask 提供的以太坊 provider
     const provider = await getProvider();
     // 以太坊钱包地址
@@ -81,7 +84,8 @@ const actions = {
     }
   },
   // OZC 转 USDT
-  async ozcExchangeUsdt({ state }, { amount, gasLimit = 1000000 }) {
+  async ozcExchangeUsdt({ state }, { amount, gasLimit }) {
+    gasLimit = gasLimit || state.gasLimit
     // 连接到 Metamask 提供的以太坊 provider
     const provider = await getProvider();
     // 以太坊钱包地址
@@ -96,7 +100,7 @@ const actions = {
     try {
       const exchangeTx = await exchangeContract.reverseExchange(
         exchangeAddr,
-        state.busdAddr,
+        state.usdtAddr,
         amountToApprove,
         {
           gasLimit: ethers.utils.hexlify(gasLimit),
@@ -131,7 +135,6 @@ const actions = {
   },
   // ozc 销毁
   async circulatingSupplyFn({state, commit}){
-
      // 连接到 Metamask 提供的以太坊 provider
      const provider = await getProvider();
      // 以太坊钱包地址
@@ -193,7 +196,52 @@ const actions = {
     console.log('error: ', error);
     return Promise.resolve({success:false, data: error})
   }
- }
+ },
+  //  usdt 兑换 toto
+  async exchangeUsdtToToto({ state }, { amount, exchangeAddr, gasLimit }) {
+    gasLimit = gasLimit || state.gasLimit
+    let provider = await getProvider()
+    const signer = provider.getSigner(); // 签名
+    exchangeAddr ??= await signer.getAddress()
+    // usdt合约地址
+    const ozcContractAddress = state.usdtAddr;
+    // usdt合约 ABI
+    const usdtContractABI = erc20Abi;
+    // 加载代币合约
+    const tokenContract = new ethers.Contract(
+      state.ozcoinAddr,
+      usdtContractABI,
+      signer
+    );
+    // 创建合约实例
+    const exchangeContract = new ethers.Contract(
+      state.totoAddr,
+       totoAbi, 
+       signer);
+    const amountToApprove = EthTransactionWei(amount);
+     // 调用代币合约的 approve 方法进行授权
+     const approveTx = await tokenContract.approve(
+      state.totoAddr,
+      amountToApprove
+    );
+    await approveTx.wait();
+
+    // 调用兑换函数
+    try {
+      const tx = await exchangeContract.exchange(
+        exchangeAddr,
+        state.ozcoinAddr,
+          amountToApprove, {
+        gasLimit: ethers.utils.hexlify(gasLimit)
+      });
+      await tx.wait(); // 等待交易确认
+      return Promise.resolve({ success: true, data:tx })
+    } catch (error) {
+      return Promise.resolve({ success: false, data:error })
+    }
+    // console.log(`交易成功！交易哈希：${tx.hash}`);
+  },
+
 };
 
 export default {

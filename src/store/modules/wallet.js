@@ -633,7 +633,14 @@ const actions = {
         gasPrice: 1000000000 // default gas price in wei, 10 gwei in this case
       }
     );
-
+    var rawTransaction = {
+      from: state.address,
+      nonce: state.web3.utils.toHex(nonce),
+      to: contractAddress,
+      value: "0x0",
+      data: myContract.methods.approve(spender, amountUint).encodeABI(),
+      chainId: state.chainId
+    };
 
     myContract.methods.approve(spender, amountUint).send({from: state.address}).then(async (res) => {
       const txHash = await window.ethereum.request({
@@ -646,14 +653,7 @@ const actions = {
       }
 
     })
-    // var rawTransaction = {
-    //   from: state.address,
-    //   nonce: state.web3.utils.toHex(nonce),
-    //   to: contractAddress,
-    //   value: "0x0",
-    //   data: myContract.methods.approve(spender, amountUint).encodeABI(),
-    //   chainId: state.chainId
-    // };
+    
     
   },
   // pc 转换OZC

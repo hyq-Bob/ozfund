@@ -36,14 +36,16 @@
         </div>
       </div>
       <button @click="conversionBtn" class="conversion_btn">
-        {{ $t('home.exchange') }} 33
+        {{ $t('home.exchange') }}
       </button>
+      <hint ref="hint" />
     </div>
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapGetters,mapActions } from 'vuex'
 import { message } from 'ant-design-vue';
+import Hint from "@/components/Hint/index.vue";
 
 export default {
   data() {
@@ -54,6 +56,7 @@ export default {
       authorizationStauts: false,
     };
   },
+  components:{Hint},
   computed: {
     ...mapGetters('Wallet', ['busdBalance', 'ozcBalance', 'clientType', 'address']),
   },
@@ -68,6 +71,7 @@ export default {
     
   },
   methods: {
+    ...mapActions('WalletSplit', ['exchangeUsdtToToto']),
     disabledFn(){
       if(!this.authorizationStauts && this.type == 'b-o'){
         return false
@@ -97,14 +101,20 @@ export default {
     },
     conversionBtn() {
       if (!this.address) return message.error(this.$t('global.pleses')+this.$t('global.connectWallet'))
-      this.mobileConversionBtn()
-
+      this.pcConversionBtn()
     },
     pcConversionBtn() {
       // 这里需要先授权
       if (this.type === 'b-o') {
         if (!this.bo.busd) return message.error(this.$t('tipMessage.successTip'))
-        this.$store.dispatch('Wallet/pcApproveErc20', { type: 'b-o', unit: process.env.NODE_ENV === 'development' ? 'mwei' : 'ether', amount: this.bo.busd, cb: this.resHint })
+        // this.$store.dispatch('Wallet/pcApproveErc20', { type: 'b-o', unit: process.env.NODE_ENV === 'development' ? 'mwei' : 'ether', amount: this.bo.busd, cb: this.resHint })
+        this.exchangeUsdtToToto({amount:this.bo.ozc}).then(({success}) =>{
+          console.log('res>>>>>: ', res);
+          if(success){
+            this.resHint()
+          }
+          // 
+        })
       }
       if (this.type === 'o-b') {
         if (!this.ob.ozc) return message.error(this.$t('tipMessage.successTip'))
@@ -115,12 +125,10 @@ export default {
       }
     },
     mobileConversionBtn() {
-      console.log('this.type: ', this.type);
-      console.log('this.bo: ', this.bo);
-      console.log('this.bo: ', this.ob);
       if (this.type === 'b-o') {
         if (!this.bo.busd) return message.error(this.$t('tipMessage.successTip'))
         this.$store.dispatch('Wallet/mobileExchangeOZCoin', { type: 'b-o', unit: process.env.NODE_ENV === 'development' ? 'mwei' : 'ether', amount: this.bo.busd, cb: this.resHint })
+        
       }
       if (this.type === 'o-b') {
         if (!this.ob.ozc) return message.error(this.$t('tipMessage.successTip'))
@@ -131,9 +139,9 @@ export default {
       this.$refs.hint.modal = {
         title: this.$t('tipMessage.tip'),
         type: 'hint', // hint || connectWallet
-        status: e === 'success' ? 1 : 2, // 1是成功 2是失败
+        status: e ? 1 : 2, // 1是成功 2是失败
         show: true,
-        txt: this.$t('home.exchange')+( e === 'success' ? this.$t('global.success') : this.$t('global.fail')),
+        txt: this.$t('home.exchange')+( e ? this.$t('global.success') : this.$t('global.fail')),
         cb: null
       }
       this.bo = { busd: null, ozc: null }

@@ -47,9 +47,12 @@
           <a target="_blank" href="https://t.me/ozfundglobal">
             <img src="@/assets/images/home/tele.png" alt="" />
           </a>
-          <a target="_blank" href="https://twitter.com/OzfundOfficial">
+          <!-- <a target="_blank" href="https://twitter.com/OzfundOfficial">
             <img src="@/assets/images/home/tiw.png" alt="" />
-          </a>
+          </a> -->
+          <a target="_blank" class="twitter" href="https://twitter.com/OzfundOfficial">
+            <img src="@/assets/images/home/tx.png" alt="" />
+          </a> 
           <a-button v-if="this.address" @click="pcDisconnectWalletNext" class="line_wallet">
             <span>{{ $t("global.disconnectWallet") }}</span>
           </a-button>
@@ -252,6 +255,14 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.twitter{
+  width: .24rem;
+  height: .24rem;
+  border-radius: 50%;
+  overflow: hidden;
+  background: #0385f3;
+  padding: 0.03rem;
+}
 .down_nav_modal {
   span {
     cursor: pointer;

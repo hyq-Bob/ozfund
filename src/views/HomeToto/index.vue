@@ -25,7 +25,7 @@
       <div class="btn-box">
         <button
           class="conversion_input_btn"
-          :disabled="disabledExchange"
+          :disabled="disabledExchange && totoBalance"
           @click="exchangeFn"
         >
           {{ $t("home.exchange") }}
@@ -62,7 +62,6 @@ export default {
     async exchangeFn() {
       this.disabledExchange = true;
       let accountAddr = await this.checkIfWalletIsConnected();
-      console.log('accountAddr: ', accountAddr);
       if (accountAddr) {
         // 已连接钱包
         this.exchangeTOTOforOzcoin({

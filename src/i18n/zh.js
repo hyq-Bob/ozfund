@@ -100,7 +100,8 @@ export default {
     liquidity1: "流动性质押池占比",
     poolMining: "Ozbet 游戏主矿池挖矿",
     poolMining1: "用户OZC投注主矿池挖矿",
-    vipPoolMining: "VIP用户Ozbet游戏 VIP矿池挖矿",
+    // vipPoolMining: "VIP用户Ozbet游戏 VIP矿池挖矿",
+    vipPoolMining: "Ozbet晋级矿池挖矿",
     vipPoolMining1: "VIP用户OZC投注VIP矿池挖矿",
     seePlant: "查看分配计划",
     plant: "分配计划",
@@ -164,7 +165,7 @@ export default {
   problem: {
     title: "常见问题",
     problemInfo:
-      "常见的几个问题解答，您也可以通过官网联系我们相关人员进行咨询。",
+      "常见的几个问题解答，您也可以通过官网联系Ozfund Team进行咨询。",
     getOzc: "如何获得OZC？",
     getOzcInfo:
       "通过Ozfund兑换功能，将USDT兑换成等额的OZC，我们将尽快的兼容更多加密资产与OZC的兑换。<br/>通过Oz Prize Pool，将TOTO兑换成OZC",

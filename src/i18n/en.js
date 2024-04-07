@@ -80,7 +80,7 @@ export default {
     liquidity1:"The Proportion Of Liquid Collateral Pool",
     poolMining:"Ozbet Game Main Mining Pool Mining",
     poolMining1:"User OZC Bets On The Main Mining Pool For Mining",
-    vipPoolMining:"VIP User Ozbet Game VIP Mining Pool Mining",
+    vipPoolMining:"Ozbet Advanced Mining Pool",
     vipPoolMining1:"VIP User OZC Invests In VIP Mining Pool Mining",
     seePlant:'View Allocation Plan',
     plant:'Allocation Plan',
@@ -145,7 +145,7 @@ export default {
   },
   problem:{
     title:"Frequently Asked Questions：",
-    problemInfo:'Answers to some common questions, and you can also contact our relevant personnel through the official website for consultation.',
+    problemInfo:'Common questions can be answered, and you can also contact the Ozfund Team for consultation through the official website.',
     getOzc:"How to get OZC?",
     getOzcInfo:`By using the Ozfund exchange feature, you can convert USDT into an equivalent amount of OZC. We will soon facilitate more cryptocurrency exchanges with OZC. \nThrough the Oz Prize Pool, convert TOTO into OZC."`,
     getToto:"How to get TOTO?",

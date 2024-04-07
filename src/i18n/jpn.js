@@ -95,7 +95,7 @@ export default {
     liquidity1: "流動性ステーキングプールの割合",
     poolMining: "Ozbetゲームのメインマイニングプール",
     poolMining1: "ユーザーOZCの主要なマイニングプールへの賭け",
-    vipPoolMining: "VIPユーザーOzbetゲームVIPマイニングプール",
+    vipPoolMining: "Ozbet昇進マイニングプール",
     vipPoolMining1: "VIPユーザーOZCのVIPマイニングプールへの賭け",
     seePlant: "配分計画を見る",
     plant: "配分計画",
@@ -161,7 +161,7 @@ export default {
   problem: {
     title: "よくある質問",
     problemInfo:
-      "よくある質問に対する回答です。また、公式ウェブサイトからお問い合わせいただくこともできます。",
+      "一般的ないくつかの質問に対する答えは、公式ウェブサイトからOzfundチームに連絡して",
     getOzc: "OZCを入手する方法は？",
     getOzcInfo:
       "Ozfundの交換機能を利用して、USDTをOZCに交換します。今後、さらに多くの暗号資産とOZCの交換を可能にする予定です。Oz Prize Poolを通じて、TOTOをOZCに交換します。",

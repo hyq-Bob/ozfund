@@ -27,7 +27,7 @@
                 :disabled="true"
               />
             </div>
-            <button class="toto_exchange_ozc" :disabled="disabledExchange" @click="exchangeFn">
+            <button class="toto_exchange_ozc" :disabled="disabledExchange && totoBalance" @click="exchangeFn">
               {{ $t("home.exchange") }}
             </button>
           </div>

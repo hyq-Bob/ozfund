@@ -2,7 +2,7 @@
  * @Author: hyq_bob bob.he@autech.one
  * @Date: 2024-03-19 17:27:28
  * @LastEditors: hyq_bob bob.he@autech.one
- * @LastEditTime: 2024-04-01 18:49:02
+ * @LastEditTime: 2024-04-07 16:42:20
  * @FilePath: /ozfund-vue/vue.config.js
  * @Description: 项目配置文件
  */
@@ -12,7 +12,7 @@ module.exports = {
   productionSourceMap: process.env.NODE_ENV === "development",
   chainWebpack: config => {
     config.plugin("html").tap(args => {
-      args[0].title = "Ozfund_官网";
+      args[0].title = "Ozfund";
       return args;
     });
     config.module

@@ -69,7 +69,7 @@ export default {
       if (accountAddr) {
         // 已连接钱包
         this.exchangeTOTOforOzcoin({
-          amount: 100,
+          amount: this.totoMapOzCoin,
           exchangeAddr: accountAddr,
         }).then(({ success }) => {
           if (success) {

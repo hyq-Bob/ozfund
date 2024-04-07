@@ -1,5 +1,3 @@
-
-
 import axios from "axios";
 import { message } from "ant-design-vue";
 import { getToken } from "@/utils/auth";
@@ -36,7 +34,7 @@ export default {
               type: "hint", // hint || connectWallet
               status: 1, // 1是成功 2是失败
               show: true,
-              txt: this.$t("emailTxt"),
+              txt: this.$t("tipMessage.successSubscribed"),
               cb: this.pcLineWalletNext,
             };
             this.email = null;

@@ -65,7 +65,7 @@ export default {
       if (accountAddr) {
         // 已连接钱包
         this.exchangeTOTOforOzcoin({
-          amount: 100,
+          amount: this.totoMapOzCoin,
           exchangeAddr: accountAddr,
         })
           .then(({ success }) => {
@@ -133,7 +133,7 @@ export default {
 
 .toto_tips {
   width: 100%;
-  height: .73rem;
+  min-height: .73rem;
   background: rgba(255, 194, 0, 0.1);
   > span {
     display: flex;

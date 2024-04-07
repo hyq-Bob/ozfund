@@ -2,7 +2,7 @@
   <div class="two_page">
     <div class="two_page_top">
       <img @click="$router.push('/')" src="@/assets/images/back.png" alt="" />
-      <p>{{ $t("global.toto") }}{{ $t("home.exchange") }}</p>
+      <p>{{ $t("global.toto") }} {{ $t("home.exchange") }}</p>
     </div>
     <p class="toto_tips">
       <span>{{ $t("home.homeConversion") }}</span>
@@ -10,7 +10,7 @@
     <div class="two_page_w">
       <div class="conversion_input">
         <p class="balance">
-          {{ $t("global.toto") }}{{ $t("home.number") }}：{{ totoBalance || 0 }}
+          {{ $t("global.toto") }} {{ $t("home.number") }}：{{ totoBalance || 0 }}
         </p>
         <div class="conversion_input_info">
           <i class="unit">¥</i>
@@ -62,6 +62,7 @@ export default {
     async exchangeFn() {
       this.disabledExchange = true;
       let accountAddr = await this.checkIfWalletIsConnected();
+      console.log('accountAddr: ', accountAddr);
       if (accountAddr) {
         // 已连接钱包
         this.exchangeTOTOforOzcoin({

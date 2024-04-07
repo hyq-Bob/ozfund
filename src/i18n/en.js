@@ -25,7 +25,7 @@ export default {
     view:'View',
     exchange:"Exchange",
     placeholderExchangeSummary:'Please enter the amount of TOTO you wish to exchange.',
-    number:'amount',
+    number:'Amount',
     token:"Ecological Token ",
     and:'and ',
     tokenInfo:"OZC (Ozcoin) and TOTO are two types of tokens within the platform's ecosystem, issued and circulated in the global online entertainment and gaming industry. They can be used for the consumption and settlement of entertainment products, related financial services, and settlement of service fees between project parties. Moreover, OZC and TOTO are set to expand their market presence and reach across all related domains within the entertainment industry and in more service payment scenarios.",

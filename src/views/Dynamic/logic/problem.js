@@ -12,28 +12,37 @@ export default {
       problemList: [],
     };
   },
-  created() {
-    
-    getProblem({
-      pageNo: 1,
-      pageSize: 100,
-    }).then(({ data }) => {
-      let { data: dataInfo } = data || {};
-      let filterInfo = dataInfo.data.filter(
-        (item) => item.language == langeMapping[getToken("OZFUND_LANG")]
-      );
-
-      this.problemList = filterInfo.map((item) => ({
-        title: item.subject,
-        id: item.id,
-        isOpen: false,
-        children: [
-          {
-            id: `${item.id}-1`,
-            summary: item.content,
-          },
-        ],
-      }));
-    });
+  watch:{
+    "$i18n.locale"(){
+      this.getPageData()
+    }
   },
+  created() {
+    this.getPageData()
+  },
+  methods:{
+    getPageData(){
+      getProblem({
+        pageNo: 1,
+        pageSize: 100,
+      }).then(({ data }) => {
+        let { data: dataInfo } = data || {};
+        let filterInfo = dataInfo.data.filter(
+          (item) => item.language == langeMapping[getToken("OZFUND_LANG")]
+        );
+  
+        this.problemList = filterInfo.map((item) => ({
+          title: item.subject,
+          id: item.id,
+          isOpen: false,
+          children: [
+            {
+              id: `${item.id}-1`,
+              summary: item.content,
+            },
+          ],
+        }));
+      });
+    }
+  }
 };

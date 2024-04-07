@@ -4,12 +4,7 @@
       <img class="notice_horn" src="@/assets/images/home/notice.png" alt="" />
       <div ref="swiperNotice" class="swiper swiper_notice">
         <div class="swiper-wrapper">
-          <div
-            @click="toNotice(item)"
-            class="swiper-slide"
-            v-for="item in noticeList"
-            :key="item.subject"
-          >
+          <div @click="toNotice(item)" class="swiper-slide" v-for="item in noticeList" :key="item.subject">
             <p>{{ item.subject }}</p>
           </div>
         </div>
@@ -33,7 +28,7 @@ const langeMapping = {
   jpn: 4,
 };
 export default {
-  name:"NoticeScope",
+  name: "NoticeScope",
   props: {
     className: {
       require: false,
@@ -45,22 +40,19 @@ export default {
       noticeList: [],
     };
   },
-  async created() {
-    let { data } = await getNotic({
-      pageNo: 1,
-      pageSize: 100,
-    });
-    let { data: dataInfo } = data || {};
-    let filterInfo = dataInfo.data.filter(
-      (item) => item.language == langeMapping[getToken("OZFUND_LANG")]
-    );
-    this.noticeList = filterInfo;
+  watch: {
+    "$i18n.locale"() {
+      this.getPageData();
+    },
+  },
+  created() {
+    this.getPageData()
   },
   mounted() {
     this.$nextTick(() => {
-      setTimeout(()=>{
+      setTimeout(() => {
         this.noticeSwiper();
-      },1000)
+      }, 1000)
     });
   },
   methods: {
@@ -81,6 +73,17 @@ export default {
       // mySwiper.el.onmouseout = function () {
       //   mySwiper.autoplay.start();
       // };
+    },
+    async getPageData() {
+      let { data } = await getNotic({
+        pageNo: 1,
+        pageSize: 100,
+      });
+      let { data: dataInfo } = data || {};
+      let filterInfo = dataInfo.data.filter(
+        (item) => item.language == langeMapping[getToken("OZFUND_LANG")]
+      );
+      this.noticeList = filterInfo;
     },
     toNotice() {
       setSession("nav-site", "notice");
@@ -105,6 +108,7 @@ export default {
     height: 0.8rem;
     padding: 0.26rem 0.2rem;
     width: 100%;
+
     .notice_horn {
       width: 0.34rem;
       height: 0.34rem;
@@ -112,6 +116,7 @@ export default {
       margin-right: 0.2rem;
       object-fit: contain;
     }
+
     .swiper {
       p {
         font-size: 0.24rem;

@@ -12,16 +12,26 @@ export default {
       dynamicList: [],
     };
   },
+  watch: {
+    "$i18n.locale"() {
+      this.getPageData();
+    },
+  },
+  methods: {
+    getPageData() {
+      getDynamic({
+        pageNo: 1,
+        pageSize: 100,
+      }).then(({ data }) => {
+        let { data: dataInfo } = data || {};
+        let filterInfo = dataInfo.data.filter(
+          (item) => item.language == langeMapping[getToken("OZFUND_LANG")]
+        );
+        this.dynamicList = filterInfo;
+      });
+    },
+  },
   created() {
-    getDynamic({
-      pageNo: 1,
-      pageSize: 100,
-    }).then(({ data }) => {
-      let { data: dataInfo } = data || {};
-      let filterInfo = dataInfo.data.filter(
-        (item) => item.language == langeMapping[getToken("OZFUND_LANG")]
-      );
-      this.dynamicList = filterInfo;
-    });
+    this.getPageData();
   },
 };

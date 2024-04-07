@@ -39,7 +39,7 @@ export default {
     investorsandPartners: "投资者和合作伙伴",
     joinEcosystem: "加入Oz生态,",
     latestUpdates: "订阅最新动态",
-    placeholderEmailSummary: "请输入您的邮箱地址",
+    placeholderEmailSummary: "请输入您的邮箱号码",
     homeConversion:"将TOTO兑换成等价的Ozcoin，交易不收取手续费",
     investorsandPartnersInfo:
       "Ozfund希望可以与更多Web 3 项目、体育和电子竞技赛事主体和在线游戏等丰富的项目主体建立联络并进行多方位的合作。",

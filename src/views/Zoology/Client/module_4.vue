@@ -2,18 +2,18 @@
  * @Author: hyq_bob bob.he@autech.one
  * @Date: 2024-03-19 17:27:28
  * @LastEditors: hyq_bob bob.he@autech.one
- * @LastEditTime: 2024-04-03 16:56:06
+ * @LastEditTime: 2024-04-07 11:19:30
  * @FilePath: /ozfund-mobile/src/views/Zoology/Client/module_4.vue
- * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
 -->
 <template>
   <div class="zoology_module_four">
     <div class="content-box">
       <div class="zoology_module_left">
         <h3 class="min_tit">{{ $t("global.auPay") }}</h3>
-        <p class="summary">
-          {{ $t("zoology.aupayInfo") }}
-        </p>
+        <clamp className="summary" :maxLines="5" :content="$t('zoology.aupayInfo')"/>
+        <!-- <p class="summary"> -->
+          <!-- {{ $t("zoology.aupayInfo") }} -->
+        <!-- </p> -->
       </div>
       <div class="zoology_module_right">
         <img v-animation class="page_png" :data-gif_url="require('@/assets/images/zoology/gif/module4.gif')" alt="" />
@@ -23,7 +23,10 @@
 </template>
 
 <script>
-export default {};
+import clamp from '../../components/clamp.vue';
+
+export default {
+  components: { clamp },};
 </script>
 
 <style lang="scss" scoped>

@@ -27,7 +27,22 @@
     "payable": false,
     "stateMutability": "nonpayable",
     "type": "function"
-  },{
+  },
+  {
+    "constant": true,
+    "inputs": [],
+    "name": "nextProduction",
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
   "constant": false,
   "inputs": [],
   "name": "switchExchange",

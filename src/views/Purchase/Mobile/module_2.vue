@@ -6,21 +6,35 @@
       <img v-animation :data-gif_url="require('@/assets/images/purchase/gif/module2.gif')" alt="" />
     </div>
     <p class="title">
-      {{ $t('purchaseAndPledge.obtain') }}&ensp;{{ $t('global.ozc') }}&ensp;{{ $t('purchaseAndPledge.stake') }}&ensp;{{ $t('global.toto') }}
+      {{ $t("purchaseAndPledge.obtain") }}&ensp;{{ $t("global.ozc") }}&ensp;{{
+        $t("purchaseAndPledge.stake")
+      }}&ensp;{{ $t("global.toto") }}
     </p>
-    <p class="summary ratio_">{{ $t('purchaseAndPledge.interestRateReference') }}：{{ stakeRate }}%</p>
+    <p class="summary ratio_">
+      {{ $t("purchaseAndPledge.interestRateReference") }}：{{ stakeRate }}%
+    </p>
     <!-- <p class="info">
       {{ $t('purchaseAndPledge.info') }}
       <br/>&ensp;{{ $t('purchaseAndPledge.note') }}
     </p> -->
-    <clamp :content='$t("purchaseAndPledge.info")' className="info" />
+    <clamp :content="$t('purchaseAndPledge.info')" className="info" />
     <div class="btn-list">
-      <button primary @click="$router.push({ name: 'PurchasePledge', params: { moduleFlag: 'Purchase' } })">
-        {{ $t('purchaseAndPledge.obtain') }}
+      <button primary @click="
+        $router.push({
+          name: 'PurchasePledge',
+          params: { moduleFlag: 'Purchase' },
+        })
+        ">
+        {{ $t("purchaseAndPledge.obtain") }}
         <arrowComp />
       </button>
-      <button @click="$router.push({ name: 'PurchaseExtract', params: { moduleFlag: 'Purchase' } })">
-        {{ $t('purchaseAndPledge.withdrawal') }}
+      <button @click="
+        $router.push({
+          name: 'PurchaseExtract',
+          params: { moduleFlag: 'Purchase' },
+        })
+        ">
+        {{ $t("purchaseAndPledge.withdrawal") }}
         <arrowComp />
       </button>
     </div>
@@ -28,16 +42,41 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex";
 import arrowComp from "@/views/components/arrow.vue";
-import Clamp from '../../components/clamp.vue';
+import Clamp from "../../components/clamp.vue";
 export default {
   components: {
     arrowComp,
-    Clamp
+    Clamp,
   },
-  computed: {
-    ...mapGetters("Wallet", ["stakeRate"]),
+  data() {
+    return {
+      stakeRate: 0.0,
+    };
+  },
+  created() {
+    this.getCalculateRatio();
+  },
+  methods: {
+    ...mapActions("Metamask", [
+      "getSettleCount",
+      "getNextProductionNum",
+      "getCountStakeAmount",
+    ]),
+    async getCalculateRatio() {
+      let { data: settleCountData } = await this.getSettleCount();
+      let { data } = await this.getNextProductionNum();
+      let nextNum = BigNumberToNum(data["_hex"]);
+      let { data: ratioData } = await this.getCountStakeAmount(
+        BigNumberToNum(settleCountData["_hex"])
+      );
+      let ratio = BigNumberToNum(ratioData["_hex"]);
+      if (nextNum != 0) {
+        this.stakeRate = (nextNum / ratio).toFixed(2);
+      } else {
+        this.stakeRate = nextNum;
+      }
+    },
   },
 };
 </script>
@@ -45,7 +84,7 @@ export default {
 <style lang="scss" scoped>
 .purchase-module_2 {
   padding: 0 0.4rem;
- 
+
   .img {
     width: 3.7415rem;
     height: 4.36rem;
@@ -79,11 +118,12 @@ export default {
     text-align: center;
     line-height: 0.42rem;
     font-weight: 200;
+
     &.ratio_ {
       font-family: PingFangSC-Medium;
       font-weight: 500;
       color: #0385f2;
-      font-size: .18rem;
+      font-size: 0.18rem;
     }
   }
 

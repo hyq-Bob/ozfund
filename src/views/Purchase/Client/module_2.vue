@@ -121,13 +121,16 @@ import { message } from "ant-design-vue";
 import Hint from "@/components/Hint/index.vue";
 import { mapGetters, mapActions } from "vuex";
 import Clamp from '../../components/clamp.vue';
+import { BigNumberToNum } from "@/utils/metamask";
 export default {
   components: { Clamp, Hint },
   computed: {
-    ...mapGetters("Wallet", ["stakeRate", "ozcStakeAmount", "totoStakeAmount", "address", 'ozcBalance']),
+    // "stakeRate",
+    ...mapGetters("Wallet", [ "ozcStakeAmount", "totoStakeAmount", "address", 'ozcBalance']),
   },
   data() {
     return {
+      stakeRate:0.00,
       pledgeNumber: null,
       modal: {
         show: false,
@@ -135,9 +138,24 @@ export default {
       },
     };
   },
+  created(){
+    this.getCalculateRatio()
+  },
   methods: {
-    ...mapActions('Metamask', ['stakeCoin2']),
+    ...mapActions('Metamask', ['stakeCoin2', 'getSettleCount', 'getNextProductionNum', 'getCountStakeAmount']),
     ...mapActions('Wallet', ['getMobileBalance']),
+    async getCalculateRatio(){
+      let {data:settleCountData} = await this.getSettleCount()
+      let {data} = await this.getNextProductionNum()
+      let nextNum =  BigNumberToNum(data['_hex'])
+      let {data:ratioData} = await this.getCountStakeAmount(BigNumberToNum(settleCountData['_hex']))
+      let ratio =  BigNumberToNum(ratioData['_hex'])
+      if(nextNum != 0){
+       this.stakeRate = (nextNum / ratio).toFixed(2)
+      }else{
+        this.stakeRate = nextNum
+      }
+    },
     extractBtn() {
       if (!Number(this.totoStakeAmount)) { // 不能提取
         this.closeModal()

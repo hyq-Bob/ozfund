@@ -1,49 +1,52 @@
 <template>
-    <div class="_conversion">
-      <div class="conversion_top">
-        <div class="conversion_info">
-          <div class="conversion_info_top">
-            <p>{{ $t('purchaseAndPledge.from') }}</p>
-            <span>{{ $t('purchaseAndPledge.quantity') }}：
-              <i class="busd_number">
-                {{ (authorizationStauts ? totoBalance : ozcBalance) || 0 }}
-              </i>
-              <span>{{ authorizationStauts ? transitionLange('toto') : transitionLange('ozc') }}</span>
-            </span>
-          </div>
-          <div class="conversion_info_input">
-            <p>{{ authorizationStauts ? transitionLange('toto') : transitionLange('ozc') }}</p>
-            <input :readonly="disabledFn()" v-model="bo[!authorizationStauts ?  'busd' : 'ozc' ]" type="number" placeholder="0" />
-          </div>
+  <div class="_conversion">
+    <div class="conversion_top">
+      <div class="conversion_info">
+        <div class="conversion_info_top">
+          <p>{{ $t('purchaseAndPledge.from') }}</p>
+          <span>{{ $t('purchaseAndPledge.quantity') }}：
+            <i class="busd_number">
+              {{ (authorizationStauts ? totoBalance : ozcBalance) || 0 }}
+            </i>
+            <span>{{ authorizationStauts ? transitionLange('toto') : transitionLange('ozc') }}</span>
+          </span>
         </div>
-        <div @click="transitionBtn" class="conversion_icon">
-          <img src="@/assets/images/purchase/icon.png" alt="" />
-        </div>
-        <div class="conversion_info">
-          <div class="conversion_info_top">
-            <p>{{ $t('purchaseAndPledge.to') }}</p>
-            <span >{{ $t('purchaseAndPledge.quantity') }}：
-              <i class="ozc_number">
-                {{ (authorizationStauts ? ozcBalance : totoBalance) || 0 }}
-                {{ authorizationStauts ? transitionLange('ozc') :  transitionLange('toto') }}
-              </i>
-            </span>
-          </div>
-          <div class="conversion_info_input">
-            <p>{{ authorizationStauts ? "OZC" : "TOTO" }}</p>
-            <input :readonly="!disabledFn()" v-model="bo[!authorizationStauts ? 'ozc' :'busd']"  type="number" placeholder="0" />
-          </div>
+        <div class="conversion_info_input">
+          <p>{{ authorizationStauts ? transitionLange('toto') : transitionLange('ozc') }}</p>
+          <input :readonly="disabledFn()" v-model="bo[!authorizationStauts ? 'busd' : 'ozc']" type="number"
+            placeholder="0" />
         </div>
       </div>
-      <button @click="conversionBtn" class="conversion_btn">
-        {{ $t('home.exchange') }}
-      </button>
-      <hint ref="hint" />
+      <!-- @click="transitionBtn" -->
+      <div class="conversion_icon">
+        <img src="@/assets/images/purchase/icon.png" alt="" />
+      </div>
+      <div class="conversion_info">
+        <div class="conversion_info_top">
+          <p>{{ $t('purchaseAndPledge.to') }}</p>
+          <span>{{ $t('purchaseAndPledge.quantity') }}：
+            <i class="ozc_number">
+              {{ (authorizationStauts ? ozcBalance : totoBalance) || 0 }}
+              {{ authorizationStauts ? transitionLange('ozc') : transitionLange('toto') }}
+            </i>
+          </span>
+        </div>
+        <div class="conversion_info_input">
+          <p>{{ authorizationStauts ? "OZC" : "TOTO" }}</p>
+          <input :readonly="!disabledFn()" v-model="bo[!authorizationStauts ? 'ozc' : 'busd']" type="number"
+            placeholder="0" />
+        </div>
+      </div>
     </div>
+    <button @click="conversionBtn" class="conversion_btn">
+      {{ $t('home.exchange') }}
+    </button>
+    <hint ref="hint" />
+  </div>
 </template>
 
 <script>
-import { mapGetters,mapActions } from 'vuex'
+import { mapGetters, mapActions } from 'vuex'
 import { message } from 'ant-design-vue';
 import Hint from "@/components/Hint/index.vue";
 
@@ -56,35 +59,37 @@ export default {
       authorizationStauts: false,
     };
   },
-  components:{Hint},
+  components: { Hint },
   computed: {
     ...mapGetters('Wallet', ['ozcBalance', 'totoBalance', 'clientType', 'address']),
   },
-  watch:{
+  watch: {
     // type--》 o-b
-    'bo.ozc'(newVal){
-      this.bo.busd = newVal
-    },
-    'bo.busd'(newVal){
-        this.bo.ozc = newVal
+    // 'bo.ozc'(newVal){
+    //   console.log('newVal: ', newVal);
+    //   this.bo.busd = newVal*10
+    // },
+    'bo.busd'(newVal) {
+      this.bo.ozc = newVal * 10
     }
-    
+
   },
   methods: {
+    ...mapActions('Wallet', ['getPcBalance']),
     ...mapActions('WalletSplit', ['exchangeUsdtToToto']),
-    disabledFn(){
-      if(!this.authorizationStauts && this.type == 'b-o'){
+    disabledFn() {
+      if (!this.authorizationStauts && this.type == 'b-o') {
         return false
       }
-      if(this.authorizationStauts  && this.type == 'o-b'){
+      if (this.authorizationStauts && this.type == 'o-b') {
         return false
       }
       return true
     },
-    transitionLange(tag,isLowerCase=false){
-      tag=`global.${tag}`
+    transitionLange(tag, isLowerCase = false) {
+      tag = `global.${tag}`
       let name = this.$t(tag)
-      return isLowerCase?name.toLocaleLowerCase():name
+      return isLowerCase ? name.toLocaleLowerCase() : name
     },
     transitionBtn() {
       // false是需要授权
@@ -96,40 +101,25 @@ export default {
         this.type = "b-o";
         this.authorizationStauts = false
       }
-      this.bo={busd: null, ozc: null}
-      this.ob={busd: null, ozc: null}
+      this.bo = { busd: null, ozc: null }
+      this.ob = { busd: null, ozc: null }
     },
     conversionBtn() {
-      if (!this.address) return message.error(this.$t('global.pleses')+this.$t('global.connectWallet'))
+      if (!this.address) return message.error(this.$t('global.pleses') + this.$t('global.connectWallet'))
       this.pcConversionBtn()
     },
     pcConversionBtn() {
       // 这里需要先授权
-      if (this.type === 'b-o') {
-        if (!this.bo.busd) return message.error(this.$t('tipMessage.successTip'))
-        // this.$store.dispatch('Wallet/pcApproveErc20', { type: 'b-o', unit: process.env.NODE_ENV === 'development' ? 'mwei' : 'ether', amount: this.bo.busd, cb: this.resHint })
-        this.exchangeUsdtToToto({amount:this.bo.ozc}).then(({success}) =>{
-          this.resHint(success)
-        })
-      }
-      if (this.type === 'o-b') {
-        if (!this.bo.ozc) return message.error(this.$t('tipMessage.successTip'))
-        // 加权限用这个
-        // this.$store.dispatch('Wallet/pcApproveErc20', { type: 'o-b', unit: 'ether', amount: this.ob.ozc })
-        // 不加权限用这个
-        this.$store.dispatch("Wallet/pcReverseExchangeOZCoin", { unit: "ether", amount: this.bo.ozc, cb: this.resHint });
-      }
-    },
-    mobileConversionBtn() {
-      if (this.type === 'b-o') {
-        if (!this.bo.busd) return message.error(this.$t('tipMessage.successTip'))
-        this.$store.dispatch('Wallet/mobileExchangeOZCoin', { type: 'b-o', unit: process.env.NODE_ENV === 'development' ? 'mwei' : 'ether', amount: this.bo.busd, cb: this.resHint })
-        
-      }
-      if (this.type === 'o-b') {
-        if (!this.ob.ozc) return message.error(this.$t('tipMessage.successTip'))
-        this.$store.dispatch("Wallet/mobileReverseExchangeOZCoin", { unit: "ether", amount: this.ob.ozc, cb: this.resHint });
-      }
+      // if (this.type === 'b-o') {
+      if (!this.bo.busd) return message.error(this.$t('tipMessage.successTip'))
+      // this.$store.dispatch('Wallet/pcApproveErc20', { type: 'b-o', unit: process.env.NODE_ENV === 'development' ? 'mwei' : 'ether', amount: this.bo.busd, cb: this.resHint })
+      this.exchangeUsdtToToto({ amount: this.bo.busd + '' }).then(({ success }) => {
+        this.resHint(success)
+        if (success) {
+          this.getPcBalance()
+        }
+      })
+      // }
     },
     resHint(e) {
       this.$refs.hint.modal = {
@@ -137,7 +127,7 @@ export default {
         type: 'hint', // hint || connectWallet
         status: e ? 1 : 2, // 1是成功 2是失败
         show: true,
-        txt: this.$t('home.exchange')+( e ? this.$t('global.success') : this.$t('global.fail')),
+        txt: this.$t('home.exchange') + (e ? this.$t('global.success') : this.$t('global.fail')),
         cb: null
       }
       this.bo = { busd: null, ozc: null }
@@ -155,7 +145,7 @@ export default {
   background: #FFF;
   box-shadow: 0 0 20px 10px rgba(3, 133, 242, 0.03);
   border-radius: .15rem;
-  margin:  .6rem auto 0;
+  margin: .6rem auto 0;
 }
 
 .conversion_top {

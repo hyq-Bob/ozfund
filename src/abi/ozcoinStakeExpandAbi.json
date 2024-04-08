@@ -135,6 +135,25 @@
   {
     "constant": true,
     "inputs": [
+      {
+        "name": "settleCount",
+        "type": "uint256"
+      }
+    ],
+    "name": "countStakeAmount",
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [
    {
         "name": "settleCount",
         "type": "uint256"

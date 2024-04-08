@@ -2,7 +2,7 @@
  * @Author: hyq_bob bob.he@autech.one
  * @Date: 2024-03-19 17:27:28
  * @LastEditors: hyq_bob bob.he@autech.one
- * @LastEditTime: 2024-04-08 13:29:41
+ * @LastEditTime: 2024-04-08 15:13:40
  * @FilePath: /ozfund-vue/vue.config.js
  * @Description: 项目配置文件
  */
@@ -31,6 +31,7 @@ module.exports = {
         patterns: [
           { from: './src/assets/pdf', to: './static' },
           {from:'./public/favicon.png', to:'./static'},
+          {from:'./public/favicon-t.png', to:'./static'},
         ]
       })
     ],
@@ -53,10 +54,11 @@ module.exports = {
       background_color: "#FFFFFF",
     },
     iconPaths: {
-      favicon32: isDev ? "favicon.svg": 'static/favicon.svg',
-      appleTouchIcon: isDev ? "favicon.png": 'static/favicon.png',
-      maskIcon: isDev ? "favicon.png": 'static/favicon.png',
-      msTileImage: isDev ? "favicon.png":'static/favicon.png'
+      favicon32: 'static/favicon-t.png',
+      favicon16: 'static/favicon-t.png',
+      appleTouchIcon:  'static/favicon.png',
+      maskIcon: 'static/favicon.png',
+      msTileImage:'static/favicon.png'
     },
   },
   assetsDir: 'static/ozfund',

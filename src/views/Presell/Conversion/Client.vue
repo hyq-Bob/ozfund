@@ -6,13 +6,13 @@
             <p>{{ $t('purchaseAndPledge.from') }}</p>
             <span>{{ $t('purchaseAndPledge.quantity') }}：
               <i class="busd_number">
-                {{ (authorizationStauts ? ozcBalance : busdBalance) || 0 }}
+                {{ (authorizationStauts ? totoBalance : ozcBalance) || 0 }}
               </i>
-              <span>{{ authorizationStauts ? transitionLange('toto') : transitionLange('busd') }}</span>
+              <span>{{ authorizationStauts ? transitionLange('toto') : transitionLange('ozc') }}</span>
             </span>
           </div>
           <div class="conversion_info_input">
-            <p>{{ authorizationStauts ? transitionLange('toto') : transitionLange('busd') }}</p>
+            <p>{{ authorizationStauts ? transitionLange('toto') : transitionLange('ozc') }}</p>
             <input :readonly="disabledFn()" v-model="bo[!authorizationStauts ?  'busd' : 'ozc' ]" type="number" placeholder="0" />
           </div>
         </div>
@@ -24,13 +24,13 @@
             <p>{{ $t('purchaseAndPledge.to') }}</p>
             <span >{{ $t('purchaseAndPledge.quantity') }}：
               <i class="ozc_number">
-                {{ (authorizationStauts ? busdBalance : ozcBalance) || 0 }}
-                {{ authorizationStauts ? transitionLange('busd') :  transitionLange('toto') }}
+                {{ (authorizationStauts ? ozcBalance : totoBalance) || 0 }}
+                {{ authorizationStauts ? transitionLange('ozc') :  transitionLange('toto') }}
               </i>
             </span>
           </div>
           <div class="conversion_info_input">
-            <p>{{ authorizationStauts ? "BUSD" : "TOTO" }}</p>
+            <p>{{ authorizationStauts ? "OZC" : "TOTO" }}</p>
             <input :readonly="!disabledFn()" v-model="bo[!authorizationStauts ? 'ozc' :'busd']"  type="number" placeholder="0" />
           </div>
         </div>
@@ -58,7 +58,7 @@ export default {
   },
   components:{Hint},
   computed: {
-    ...mapGetters('Wallet', ['busdBalance', 'ozcBalance', 'clientType', 'address']),
+    ...mapGetters('Wallet', ['ozcBalance', 'totoBalance', 'clientType', 'address']),
   },
   watch:{
     // type--》 o-b
@@ -109,10 +109,7 @@ export default {
         if (!this.bo.busd) return message.error(this.$t('tipMessage.successTip'))
         // this.$store.dispatch('Wallet/pcApproveErc20', { type: 'b-o', unit: process.env.NODE_ENV === 'development' ? 'mwei' : 'ether', amount: this.bo.busd, cb: this.resHint })
         this.exchangeUsdtToToto({amount:this.bo.ozc}).then(({success}) =>{
-          if(success){
-            this.resHint()
-          }
-          // 
+          this.resHint(success)
         })
       }
       if (this.type === 'o-b') {

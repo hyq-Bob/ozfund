@@ -2,7 +2,7 @@
  * @Author: hyq_bob bob.he@autech.one
  * @Date: 2024-03-25 18:53:19
  * @LastEditors: hyq_bob bob.he@autech.one
- * @LastEditTime: 2024-04-03 15:25:29
+ * @LastEditTime: 2024-04-08 14:10:33
  * @FilePath: /ozfund-mobile/src/store/modules/metamask.js
  * @Description: 钱包相关操作
  */
@@ -18,7 +18,8 @@ import {
   EthTransactionWei,
   signatureByEIP712,
   getChainId,
-  getChainNonce
+  getChainNonce,
+  BigNumberToNum
 } from "@/utils/metamask.js";
 import dayjs from "dayjs";
 const state = {
@@ -236,6 +237,13 @@ const actions = {
       return Promise.resolve({ success: false, data:error })
     }
   },
+ async getUsdtBalance({state},{address}){
+    let provider = await getProvider()
+    const signer = provider.getSigner(); // 签名
+    const contract = new ethers.Contract(state.usdtAddr, erc20Abi, signer)
+   let balance =  await contract.balanceOf(address)
+    return BigNumberToNum(balance, 6)
+  }
 }
 export default {
   namespaced: true,

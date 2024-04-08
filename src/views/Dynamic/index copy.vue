@@ -36,7 +36,6 @@
               <br>TOTO是Oz生态中的会员通证，在BNB Chain上发行，可以在多种博彩场景中应用，同时也作为Oz生态的管理通证用于平台治理。在Ozbet上线后，TOTO将能够用于平台收益的共享，多种销毁机制也将维持TOTO的通缩。为了在生态搭建前期更好地对Oz产品和应用进行运营维护，Ozfund决定开放部分TOTO的预售以召集支持者与资金。
               <br>TOTO的预售价格为1TOTO=0.1BUSD，每日预售数量上限100万个。
               <br>预售地址：<a target="_blank" href="https://ozfund.one/presale">https://ozfund.one/presale</a>
-              <!--  -->
             </span>
           </li>
           <li>

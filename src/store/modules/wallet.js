@@ -17,7 +17,7 @@ const state = {
   web3: new Web3(provider),
   web3Provider: new providers.Web3Provider(provider),
   signer: null,
-  address: "",
+  address: operCookie.getToken('WALLET_ADDRESS'),
   chainId: "",
   // status: false,
   // 
@@ -119,12 +119,12 @@ const actions = {
         myContract = new state.web3.eth.Contract(
           erc20ContractAbi,
           state.busdContractAddress,
-          { from: state.address }
+          { from: state.address || operCookie.getToken('WALLET_ADDRESS')}
         );
         break;
     }
     myContract.methods
-      .balanceOf(state.address)
+      .balanceOf(state.address || operCookie.getToken('WALLET_ADDRESS'))
       .call({ from: state.address }, (error, result) => {
         if (!error) {
           let ubalance = state.web3.utils.fromWei(String(result), unit);
@@ -551,9 +551,7 @@ const actions = {
   },
   async getPcBalance({ state, dispatch }) {
     let balanceHex = await window.ethereum.request({ method: 'eth_getBalance', params: [state.address, "latest"] });
-    console.log(balanceHex, Web3, 'balanceHex')
     let balance = Web3.utils.fromWei(String(Number(balanceHex)), 'ether');
-    console.log(balance, 'balance')
     dispatch("getPcBalanceNext", { key: "totoBalance", unit: "ether" });
     dispatch("getPcBalanceNext", { key: "ozcBalance", unit: "ether" });
     dispatch("getPcBalanceNext", { key: "busdBalance", unit: "mwei" });

@@ -7,7 +7,7 @@
             <p>{{ $t('purchaseAndPledge.from') }}</p>
             <span>{{ $t('purchaseAndPledge.quantity') }}：
               <i class="busd_number">
-                {{ (authorizationStauts ? ozcBalance : busdBalance) || 0 }}
+                {{ (authorizationStauts ? ozcBalance : (busdBalance || usdtVal)) || 0 }}
               </i>
               <span>{{ authorizationStauts ? $t('global.ozc') : $t('global.busd') }}</span>
             </span>
@@ -25,7 +25,7 @@
             <p>{{ $t('purchaseAndPledge.to') }}</p>
             <span>{{ $t('purchaseAndPledge.quantity') }}：
               <i class="ozc_number">
-                {{ (authorizationStauts ? busdBalance : ozcBalance) || 0 }}
+                {{ (authorizationStauts ? (busdBalance || usdtVal) : ozcBalance) || 0 }}
                 {{ authorizationStauts ? $t('global.busd') : $t('global.ozc') }}
               </i>
             </span>
@@ -48,22 +48,34 @@
 import { mapGetters, mapActions } from 'vuex'
 import { message } from 'ant-design-vue';
 import Hint from "@/components/Hint";
+import * as operCookie from '@/utils/auth'
 export default {
   components:{Hint},
   data() {
     return {
       type: "b-o",
+      usdtVal:0,
       bo: { busd: 0, ozc: 0 },
       ob: { busd: 0, ozc: 0 },
       authorizationStauts: false,
     };
   },
+  created(){
+    this.getUsdtVal()
+  },
   computed: {
-    ...mapGetters('Wallet', ['busdBalance', 'ozcBalance', 'clientType', 'address'])
+    ...mapGetters('Wallet', ['busdBalance', 'ozcBalance','address'])
   },
   methods: {
     ...mapActions('WalletSplit',['approveAndExchange','ozcExchangeUsdt']),
     ...mapActions('Wallet', ['getMobileBalance']),
+    ...mapActions('Metamask',['getUsdtBalance']),
+    getUsdtVal(){
+      let address = operCookie.getToken('WALLET_ADDRESS')
+      this.getUsdtBalance({address}).then((val )=>{
+        this.usdtVal = val
+      })
+    },
     transitionBtn() {
       // false是需要授权
       if (this.type === "b-o") {
@@ -88,7 +100,8 @@ export default {
           this.resHint(obj.success)
           if(obj.success){
             this.getMobileBalance({key:'ozcBalance', unit:'ether'})
-            this.getMobileBalance({key:'busdBalance', unit:'wei'})
+            // this.getMobileBalance({key:'busdBalance', unit:'wei'})
+            this.getUsdtVal()
           }
           console.log('success: ', obj);
         })
@@ -104,8 +117,9 @@ export default {
         this.ozcExchangeUsdt({amount: this.bo.ozc}).then((obj) =>{
           this.resHint(obj.success)
           if(obj.success){
-            this.getMobileBalance({key:'busdBalance', unit:'wei'})
+            // this.getMobileBalance({key:'busdBalance', unit:'wei'})
             this.getMobileBalance({key:'ozcBalance', unit:'ether'})
+            this.getUsdtVal()
           }
           console.log('success: ', obj);
         })

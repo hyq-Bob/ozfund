@@ -25,19 +25,19 @@
           <ul class="card_data">
             <li>
               <p>{{ $t("home.price") }}</p>
-              <span>1TOTO = 0.1Ozcoin</span>
+              <span>1<span class="unit-family">TOTO</span>&ensp;=&ensp;0.1<span class="unit-family">OZC</span></span>
             </li>
             <li>
               <p>{{ $t("home.marketValue") }}</p>
-              <span>{{ totoMarketCap }} TOTO</span>
+              <span>{{ totoMarketCap }}&nbsp;<span class="unit-family">TOTO</span></span>
             </li>
             <li>
               <p>{{ $t("home.destroyed") }}</p>
-              <span>{{ totoDestroy }} TOTO</span>
+              <span>{{ totoDestroy }}&nbsp;<span class="unit-family">TOTO</span></span>
             </li>
             <li>
               <p>{{ $t("home.circulation") }}</p>
-              <span>{{ totoCirculatingSupply }} TOTO</span>
+              <span>{{ totoCirculatingSupply }}&nbsp;<span class="unit-family">TOTO</span> </span>
             </li>
           </ul>
           <!-- <p class="card_address">{{ totoContractAddress }}</p> -->
@@ -64,15 +64,15 @@
           <ul class="card_data">
             <li>
               <p>{{ $t("home.price") }}</p>
-              <span>1OZC = 1BUSD</span>
+              <span>1<span class="unit-family">OZC</span>&ensp;=&ensp;1<span class="unit-family">USDT</span></span>
             </li>
             <li>
               <p>{{ $t("home.marketValue") }}</p>
-              <span>{{ ozcMarketCap || 0 }} OZC</span>
+              <span>{{ ozcMarketCap || 0 }}&nbsp;<span class="unit-family">OZC</span></span>
             </li>
             <li>
               <p>{{ $t("home.circulation") }}</p>
-              <span>{{ ozcCirculatingSupply || 0 }} OZC</span>
+              <span>{{ ozcCirculatingSupply || 0 }}&nbsp;<span class="unit-family">OZC</span></span>
             </li>
           </ul>
           <!-- <p class="card_address">{{ this.ozcoinContractAddress }}</p> -->
@@ -127,6 +127,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+
 .home_module_four {
   background: url("~@/assets/images/home/module2.png") no-repeat;
   background-size: 100% 100%;
@@ -223,6 +224,9 @@ export default {
       color: #554100;
       text-align: right;
       font-weight: 700;
+    }
+    .unit-family{
+      font-family: PingFangSC-Medium;
     }
   }
 }

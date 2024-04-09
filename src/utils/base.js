@@ -102,10 +102,23 @@ function observeDom(el, fn) {
 }
 function viewePdf(fileUrl) {
   if (!fileUrl) return;
-  const routePath = this.$router.resolve({ path: `/view-pdf`, query:{file:fileUrl} }).href;
-  window.open(routePath, '_blank')
+  const routePath = this.$router.resolve({
+    path: `/view-pdf`,
+    query: { file: fileUrl },
+  }).href;
+  window.open(routePath, "_blank");
+}
+function langeMapShowLine(lange) {
+  const langes = {
+    zh: 6,
+    tc: 6,
+    en: 5,
+    jpn: 5,
+  };
+  return langes[lange];
 }
 export {
+  langeMapShowLine,
   viewePdf,
   observeDom,
   mobileType,

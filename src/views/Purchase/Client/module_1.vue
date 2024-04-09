@@ -4,14 +4,13 @@
       <div class="purchase_module_w">
         <div class="purchase_module_left">
           <h3 class="max_tit">
-            {{ $t('purchaseAndPledge.purchase') }}{{$t('global.ozc')  }}
+            {{ $t("purchaseAndPledge.purchase") }} {{ $t("global.ozc") }}
           </h3>
-          <!-- <p v-html="$t('purchaseAndPledge.purchaseInfo')"></p> -->
-
-          <Clamp :content="$t('purchaseAndPledge.purchaseInfo')" className="content" />
+          <Clamp :maxLines="maxLines" :content="$t('purchaseAndPledge.purchaseInfo')" className="content" />
         </div>
         <div class="purchase_module_right">
-          <img v-animation class="page_png" :data-gif_url="require('@/assets/images/purchase/gif/module1.gif')" alt="" />
+          <img v-animation class="page_png" :data-gif_url="require('@/assets/images/purchase/gif/module1.gif')"
+            alt="" />
         </div>
       </div>
       <div class="exchange">
@@ -22,14 +21,28 @@
 </template>
 
 <script>
-import Clamp from '../../components/clamp.vue';
+import { langeMapShowLine } from "../../../utils/base";
+import Clamp from "../../components/clamp.vue";
 import Conversion from "../Conversion";
 export default {
   components: {
     Conversion,
     Clamp,
   },
-}
+  data() {
+    return {
+      maxLines: 0,
+    };
+  },
+  watch: {
+    "$i18n.locale": {
+      handler(newVal) {
+         this.maxLines =langeMapShowLine(newVal);
+      },
+      immediate: true,
+    },
+  },
+};
 </script>
 
 <style lang="scss" scoped>
@@ -37,6 +50,10 @@ export default {
   background: url("~@/assets/images/purchase/module1.png") no-repeat;
   background-size: 100% 100%;
   padding-top: 0.6rem;
+
+  .max_tit {
+    text-wrap: nowrap;
+  }
 
   .content-box {
     width: var(--content-w);
@@ -75,7 +92,7 @@ export default {
   }
 
   .exchange {
-    margin-top: .8764rem;
+    margin-top: 0.8764rem;
     width: 100%;
   }
 }

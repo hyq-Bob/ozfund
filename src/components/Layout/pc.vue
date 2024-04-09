@@ -109,7 +109,7 @@
 <script>
 import { viewePdf, getSession, setSession } from "@/utils/base.js";
 import { mapGetters } from "vuex";
-import SelectLang from "./SelectLang";
+import SelectLang from "./SelectLang/index.vue";
 import { Tabs, Button, Popover, Dropdown } from "ant-design-vue";
 import home from "@/views/Home/index.vue";
 import zoology from "@/views/Zoology/index.vue";

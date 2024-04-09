@@ -10,7 +10,7 @@
     <div class="content-box">
       <div class="zoology_module_left">
         <h3 class="min_tit">{{ $t("global.auPay") }}</h3>
-        <clamp className="summary" :maxLines="5" :content="$t('zoology.aupayInfo')"/>
+        <clamp className="summary" :content="$t('zoology.aupayInfo')"/>
         <!-- <p class="summary"> -->
           <!-- {{ $t("zoology.aupayInfo") }} -->
         <!-- </p> -->
@@ -26,13 +26,16 @@
 import clamp from '../../components/clamp.vue';
 
 export default {
-  components: { clamp },};
+  components: { clamp }
+  };
 </script>
 
 <style lang="scss" scoped>
 .zoology_module_four {
   padding: 0 0 0.57rem;
-
+  .min_tit{
+    margin-bottom: .24rem;
+  }
   .content-box {
     display: flex;
     width: var(--content-w);

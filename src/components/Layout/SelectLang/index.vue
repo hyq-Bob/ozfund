@@ -4,11 +4,16 @@
       {{ item.label }}
     </li>
   </ul>
-  <menu class="_menu" v-else>
+  <ul class="_menu" v-else>
+    <li  class="_menu-items" v-for="item in langList" :key="item.value" @click="clickLang(item)">
+      {{ item.label }}
+    </li>
+  </ul>
+  <!-- <menu class="_menu" v-else>
     <menu-item class="_menu-items" v-for="item in langList" :key="item.value" @click="clickLang(item)"> 
       {{ item.label }}
     </menu-item>
-  </menu>
+  </menu> -->
 </template>
 
 <script>

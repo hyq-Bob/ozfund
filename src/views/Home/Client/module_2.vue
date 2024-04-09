@@ -12,7 +12,7 @@
       <div class="home_module_right">
         <h3>{{ $t("home.foundation") }}</h3>
         <!-- <p >{{ $t("home.info") }}</p> -->
-        <clamp :content="$t('home.info')" className="summary" />
+        <clamp :content="$t('home.info')" :maxLines="maxLine"  className="summary" />
         <p>{{ $t("home.webSite") }}</p>
         <div class="button_report_w">
           <button @click="viewePdf.call(this, 'Oz-White-Paper.pdf')">
@@ -22,9 +22,7 @@
             <!-- </a> -->
           </button>
           <button class="button_report">
-            <a
-              target="_blank"
-              href="https://beosin.com/audits/Ozfund_202212071800.pdf"
+            <a target="_blank" href="https://beosin.com/audits/Ozfund_202212071800.pdf"
             >
               {{ $t("home.view") }}{{ $t("home.auditReport") }}
               <img src="@/assets/images/home/arrow22.png" alt="" />
@@ -39,13 +37,23 @@
 <script>
 import { viewePdf } from "@/utils/base.js";
 import Clamp from "../../components/clamp.vue";
+import { langeMapShowLine } from "../../../utils/base";
 export default {
   components: {
     Clamp,
   },
+  watch:{
+    '$i18n.locale':{
+      handler(newVal){
+        this.maxLine = langeMapShowLine(newVal)
+      },
+      immediate: true
+    }
+  },
   data() {
     return {
       toggle: false,
+      maxLine: 0
     };
   },
   methods: {

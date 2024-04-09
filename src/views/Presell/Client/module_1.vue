@@ -7,10 +7,7 @@
             <h3 class="max_tit">
               {{ $t("global.toto") }}{{ $t("preSale.presale") }}
             </h3>
-            <!-- <p>
-              {{ $t("preSale.presaleInfo") }}
-            </p> -->
-            <clamp :content="$t('preSale.presaleInfo')" className="content" />
+            <clamp :maxLines="maxLine" :content="$t('preSale.presaleInfo')" className="content" />
           </div>
           <div class="presell_module_right">
             <img v-animation class="page_gif" :data-gif_url="require('@/assets/images/presell/gif/module1.gif')"
@@ -36,6 +33,7 @@
 </template>
 
 <script>
+import { langeMapShowLine } from "../../../utils/base";
 import Clamp from "../../components/clamp.vue";
 import Conversion from "../Conversion";
 export default {
@@ -46,13 +44,21 @@ export default {
 
   data() {
     return {
+      maxLine:0,
       timeHtml: null,
       endTime: 1663462800000, // 结束的时间
     };
   },
-  created() {
-    this.startTimer();
+  watch:{
+    '$i18n.locale':{
+      handler(newVal){
+        this.maxLine = langeMapShowLine(newVal)
+        this.startTimer()
+      },
+      immediate: true
+    }
   },
+
   methods: {
     startTimer() {
       this.timer = setInterval(() => {

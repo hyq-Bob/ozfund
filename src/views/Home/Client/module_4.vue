@@ -43,7 +43,7 @@
           <!-- <p class="card_address">{{ totoContractAddress }}</p> -->
           <a
             target="_blank"
-            :href="'https://bscscan.com/token/' + totoContractAddress"
+            :href="jumpUrl+'/'+totoContractAddress"
             class="card_arrow"
           >
             <img src="@/assets/images/home/arrow.png" alt="" />
@@ -78,7 +78,7 @@
           <!-- <p class="card_address">{{ this.ozcoinContractAddress }}</p> -->
           <a
             target="_blank"
-            :href="'https://bscscan.com/token/' + ozcoinContractAddress"
+            :href="jumpUrl+'/'+ozcoinContractAddress"
             class="card_arrow"
           >
             <img src="@/assets/images/home/arrow.png" alt="" />
@@ -108,6 +108,11 @@ export default {
     totoCirculatingSupply() {
       return this.totoMarketCap - this.totoDestroy;
     },
+  },
+  data(){
+    return{
+      jumpUrl:process.env.VUE_APP_CHAIN_ADDR
+    }
   },
   methods: {
     ...mapActions("WalletSplit", [

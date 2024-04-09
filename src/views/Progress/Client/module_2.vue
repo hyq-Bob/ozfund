@@ -15,7 +15,7 @@
                 src="../imgs/time-line.png"
               />
               <div class="info">
-                <p>{{ item.time }}</p>
+                <p>{{ item.time | formatTime}}</p>
                 <p class="title">{{ item.subject }}</p>
                 <p>{{ item.content || "--" }}</p>
               </div>
@@ -39,7 +39,7 @@
                 <i></i>
               </span>
               <div class="info">
-                <p>{{ item.time }}</p>
+                <p>{{ item.time | formatTime}}</p>
                 <p class="title">{{ item.subject }}</p>
                 <p>{{ item.content || "--" }}</p>
               </div>

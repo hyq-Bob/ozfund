@@ -228,9 +228,9 @@ export default {
       "连接钱包不会访问您的资产，您的资产仍然由您自己的私钥控制。未经您的同意，我们不会转移您钱包地址上的任何资产",
   },
   footer: {
-    ozfund: "Ozfund官网",
-    ozbet: "Ozbet官网",
-    auPay: "auPay官网",
+    ozfund: "Ozfund",
+    ozbet: "Ozbet",
+    auPay: "auPay",
     whitepaper: "白皮书",
     treaty: "条款和条件",
     privacy: "隐私政策",

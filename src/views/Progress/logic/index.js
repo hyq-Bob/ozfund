@@ -17,6 +17,11 @@ const langeMapping = {
   jpn: 4,
 };
 export default {
+  filters:{
+    formatTime(val){
+      return dayjs(val).format("YYYY.MM")
+    }
+  },
   data() {
     return {
       timeAxisInfo: [],

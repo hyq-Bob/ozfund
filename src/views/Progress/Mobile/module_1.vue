@@ -14,7 +14,7 @@
               <i class="dot-s"></i>
               <i class="line"></i>
               <i class="dot-b"></i>
-              <span class="time">{{ item.time }}</span>
+              <span class="time">{{ item.time  | formatTime}}</span>
             </div>
             <label>{{ item.subject }}</label>
             <p class="summary">{{ item.content }}</p>

@@ -29,7 +29,7 @@
             </li>
             <li>
               <p>{{ $t("home.marketValue") }}</p>
-              <span>{{ totoMarketCap }}&nbsp;<span class="unit-family">TOTO</span></span>
+              <span>{{ totoMarketCap }}&nbsp;<span class="unit-family">OZC</span></span>
             </li>
             <li>
               <p>{{ $t("home.destroyed") }}</p>
@@ -68,11 +68,11 @@
             </li>
             <li>
               <p>{{ $t("home.marketValue") }}</p>
-              <span>{{ ozcMarketCap || 0 }}&nbsp;<span class="unit-family">OZC</span></span>
+              <span>{{ ozcMarketCap || 0 }}&nbsp;<span class="unit-family">USDT</span></span>
             </li>
             <li>
               <p>{{ $t("home.circulation") }}</p>
-              <span>{{ ozcCirculatingSupply || 0 }}&nbsp;<span class="unit-family">OZC</span></span>
+              <span>{{ ozcCirculatingSupply || 0 }}&nbsp;<span class="unit-family">USDT</span></span>
             </li>
           </ul>
           <!-- <p class="card_address">{{ this.ozcoinContractAddress }}</p> -->

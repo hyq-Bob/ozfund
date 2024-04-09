@@ -169,6 +169,7 @@ export default {
     noOzcExchange:'No OZC available, please exchange first'
   },
   global:{
+    unavailable:"Not yet available",
     connect:"Connect",
     confirm:"Confirm",
     nft: "NFT",

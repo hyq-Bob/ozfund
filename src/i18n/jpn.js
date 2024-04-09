@@ -189,6 +189,7 @@ export default {
     noOzcExchange:'OZCがありませんので、まず交換してください'
   },
   global: {
+    unavailable:"まだ利用できません",
     connect: "接続",
     confirm: "確認",
     nft: "NFT",

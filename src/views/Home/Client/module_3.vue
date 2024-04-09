@@ -3,7 +3,10 @@
     <div class="w">
       <div class="conversion_home_wrap">
         <div class="conversion_home_tit">
-          <p>{{ $t("global.toto") }}{{ $t("home.exchange") }}</p>
+          <p>
+            {{ $t("global.toto") }}{{ $t("home.exchange") }}
+            <sub class="sub">{{ $t('global.unavailable') }}</sub>
+          </p>
           <span>{{ $t("home.homeConversion") }}</span>
         </div>
         <div class="conversion_home_info">
@@ -13,7 +16,7 @@
           <div class="conversion_home_info_input">
             <div class="conversion_home_info_input_info">
               <input
-                :disabled="false"
+                :disabled="true"
                 class="toto_exchange_ozc_num"
                 type="number"
                 v-model="totoMapOzCoin"
@@ -27,7 +30,8 @@
                 :disabled="true"
               />
             </div>
-            <button class="toto_exchange_ozc" :disabled="disabledExchange && totoBalance" @click="exchangeFn">
+            <!-- disabledExchange && totoBalance -->
+            <button class="toto_exchange_ozc" :disabled="true" @click="exchangeFn">
               {{ $t("home.exchange") }}
             </button>
           </div>
@@ -142,6 +146,9 @@ export default {
         position: absolute;
         top: 0;
         left: 0;
+      }
+      .sub{
+        font-size: .14rem;
       }
     }
   }

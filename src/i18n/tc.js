@@ -186,6 +186,7 @@ export default {
     noOzcExchange:'暫無OZC，請先兌換'
   },
   global: {
+    unavailable:"暫未開啟",
     connect: "連接",
     confirm: "确定",
     nft: "NFT",

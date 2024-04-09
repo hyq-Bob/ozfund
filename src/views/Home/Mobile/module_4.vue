@@ -17,6 +17,7 @@
 
 <script>
 import arrowIcon from "@/views/components/arrow.vue";
+import { Toast } from 'vant';
 export default {
   components: {
     arrowIcon,
@@ -28,7 +29,10 @@ export default {
      },
     //  TOTO兑换
      redemption(){
-      this.jumpTarget("/home/toto")
+      Toast({
+        message:this.$t('global.unavailable')
+      })
+      // this.jumpTarget("/home/toto")
      },
      jumpTarget(url){
       if(!url) return

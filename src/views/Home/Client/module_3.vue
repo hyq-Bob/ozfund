@@ -5,13 +5,15 @@
         <div class="conversion_home_tit">
           <p>
             {{ $t("global.toto") }}{{ $t("home.exchange") }}
-            <sub class="sub">{{ $t('global.unavailable') }}</sub>
+            <span class="sub">{{ $t("global.unavailable") }}</span>
           </p>
           <span>{{ $t("home.homeConversion") }}</span>
         </div>
         <div class="conversion_home_info">
           <p class="conversion_home_info_tit toto_number">
-            {{ $t("global.toto") }}{{ $t("home.number") }}：{{ totoBalance || 0}}
+            {{ $t("global.toto") }}{{ $t("home.number") }}：{{
+              totoBalance || 0
+            }}
           </p>
           <div class="conversion_home_info_input">
             <div class="conversion_home_info_input_info">
@@ -31,31 +33,35 @@
               />
             </div>
             <!-- disabledExchange && totoBalance -->
-            <button class="toto_exchange_ozc" :disabled="true" @click="exchangeFn">
+            <button
+              class="toto_exchange_ozc"
+              :disabled="true"
+              @click="exchangeFn"
+            >
               {{ $t("home.exchange") }}
             </button>
           </div>
         </div>
       </div>
     </div>
-    <Hint ref="hint" /> 
+    <Hint ref="hint" />
   </div>
 </template>
 
 <script>
 import { mapGetters, mapActions } from "vuex";
-import Hint from '@/components/Hint/index.vue'
+import Hint from "@/components/Hint/index.vue";
 import { connectMetaMask } from "@/utils/metamask";
 export default {
   components: {
-    Hint
+    Hint,
   },
   computed: {
     ...mapGetters("Wallet", ["totoBalance"]),
   },
   data() {
     return {
-      disabledExchange:false,
+      disabledExchange: false,
       totoMapOzCoin: null,
     };
   },
@@ -67,30 +73,32 @@ export default {
     // ...mapActions("Wallet", ["pcExchangeOZCoin"]),
     // 兑换toto--> OzCoin
     async exchangeFn() {
-      if(!this.totoBalance)return
-      this.disabledExchange = true
+      if (!this.totoBalance) return;
+      this.disabledExchange = true;
       let accountAddr = await this.checkIfWalletIsConnected();
       if (accountAddr) {
         // 已连接钱包
         this.exchangeTOTOforOzcoin({
           amount: this.totoMapOzCoin,
           exchangeAddr: accountAddr,
-        }).then(({ success }) => {
-          if (success) {
-            this.totoMapOzCoin = null;
-          }else{
-            this.$refs.hint.modal = {
-              title: this.$t("tipMessage.tip"),
-              type: "hint", // hint || connectWallet
-              status: 2, // 1是成功 2是失败
-              show: true,
-              txt: this.$t("global.fail"),
-              cb: this.pcLineWalletNext,
-            };
-          }
-        }).finally(()=>{
-          this.disabledExchange = false
-        });
+        })
+          .then(({ success }) => {
+            if (success) {
+              this.totoMapOzCoin = null;
+            } else {
+              this.$refs.hint.modal = {
+                title: this.$t("tipMessage.tip"),
+                type: "hint", // hint || connectWallet
+                status: 2, // 1是成功 2是失败
+                show: true,
+                txt: this.$t("global.fail"),
+                cb: this.pcLineWalletNext,
+              };
+            }
+          })
+          .finally(() => {
+            this.disabledExchange = false;
+          });
         // this.pcExchangeOZCoin({
         //   amount: this.totoMapOzCoin,
         //   unit: "wei",
@@ -129,6 +137,7 @@ export default {
       display: block;
     }
     p {
+      display: flex;
       font-family: PingFang-Medium;
       font-size: 0.22rem;
       color: #333;
@@ -136,7 +145,6 @@ export default {
       margin-bottom: 0.1rem;
       padding-top: 0.12rem;
       position: relative;
-      display: inline-block;
       &::after {
         content: "";
         width: 30%;
@@ -147,8 +155,12 @@ export default {
         top: 0;
         left: 0;
       }
-      .sub{
-        font-size: .14rem;
+      .sub {
+        display: flex;
+        align-items: flex-end;
+        font-size: 0.14rem;
+        margin-left: 0.1rem;
+        color: #666;
       }
     }
   }
@@ -173,7 +185,7 @@ export default {
     border: none;
   }
   button {
-    &[disabled]{
+    &[disabled] {
       cursor: not-allowed;
     }
     width: 1.4rem;

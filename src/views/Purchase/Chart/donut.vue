@@ -55,6 +55,9 @@ export default {
             },
             label: {
               show: true,
+              color: '#a8a8a8',
+              fontSize:16,
+              fontFamily:'PingFangSC',
               formatter:function({value}){
                 return value + "%"
               }

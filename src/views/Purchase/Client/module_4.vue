@@ -34,8 +34,8 @@
           </ul>
         </div>
         <div class="allocation_right">
-          <img v-animation class="page_png" :data-gif_url="require('@/assets/images/purchase/gif/module5.gif')"
-            alt="" />
+          <!-- <img v-animation class="page_png" :data-gif_url="require('@/assets/images/purchase/gif/module5.gif')" alt="" /> -->
+          <donut/>
         </div>
       </div>
     </div>
@@ -43,7 +43,9 @@
 </template>
 
 <script>
+import donut from '../Chart/donut.vue'
 export default {
+  components: { donut },
 
 }
 </script>

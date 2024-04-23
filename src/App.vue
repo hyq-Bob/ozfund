@@ -13,8 +13,8 @@
     components: {
       Loading
     },
-    created() {
-      this.$store.commit("Wallet/SAVE_WALLET_INFO", { key: "loading", value: false })
+    // created() {
+      // this.$store.commit("Wallet/SAVE_WALLET_INFO", { key: "loading", value: false })
       // 判断协议 跳转https
       // if (document.location.protocol === 'http:' && process.env.NODE_ENV === "production") {
       //   document.location.href = 'https://' + document.location.host + document.location.pathname
@@ -32,7 +32,7 @@
       //   }
       //   this.$store.commit('Wallet/SAVE_WALLET_INFO', { key: 'clientType', value: 'pc' })
       // }
-    },
+    // },
     beforeDestroy() {
       operCookie.removeToken('WALLET_ADDRESS')
       localStorage.removeItem('walletconnect')

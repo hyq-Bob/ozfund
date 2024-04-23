@@ -147,7 +147,8 @@ export default {
       position: relative;
       &::after {
         content: "";
-        width: 30%;
+        // width: 30%;
+        width: .32rem;
         height: 0.03rem;
         background: #0385f2;
         border-radius: 0.04rem;

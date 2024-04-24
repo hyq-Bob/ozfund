@@ -98,7 +98,7 @@ $line-w: (
 
   .time-axis_bg {
     position: absolute;
-    width: 100px;
+    width: 1rem;
     height: 100%;
     top: 0.2rem;
     left: 50%;

@@ -47,7 +47,7 @@ export default {
   padding-top: 0.6rem;
   background-image: url("../imgs/module1.svg");
   background-repeat: no-repeat;
-  background-size: 100%;
+  background-size: cover;
 
   // background: url("~@/assets/images/home/module1.png") no-repeat;
   // background-size: cover;

@@ -3,10 +3,7 @@
     <div v-scroll class="header">
       <div class="header-box">
         <div class="nav">
-          <a href="/" :style="{
-            '--image-url': `url(${logoUrl})`,
-          }" class="logo">
-          </a>
+          <a href="/" :style="{'--image-url': `url(${logoUrl})`}" class="logo"></a>
           <a-tabs :tabBarGutter="32" @change="navChanges" :activeKey="activeKey" class="nav-box">
             <a-tab-pane v-for="item in navList" :key="item.key">
               <template slot="tab">

@@ -286,6 +286,7 @@ export default {
   .main-box {
     overflow-y: hidden;
     // pointer-events: none;
+    min-height: calc(100vh - .6rem);
   }
 
   .header {

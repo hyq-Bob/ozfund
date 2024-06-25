@@ -66,7 +66,7 @@
         <li>
           <p>{{ $t("preSale.browser") }}{{ $t("preSale.queries") }}</p>
           <p>
-            <span cursor @click="jump(`https://bscscan.com/token/${totoContractAddress}`)">
+            <span cursor @click="jump(`https://sepolia.etherscan.io/address/${totoContractAddress}`)">
               {{ $t("global.jump") }}
             </span>
           </p>

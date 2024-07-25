@@ -46,9 +46,9 @@ export default {
         this.ComponentName = defaultComp
       })
     }
-    if (this.address) {
-      isMobile()? this.$store.dispatch('Wallet/connectWalletConnect'): this.$store.dispatch('Wallet/pcConnectWallet')
-    }
+    // if (this.address) {
+    //   isMobile()? this.$store.dispatch('Wallet/connectWalletConnect'): this.$store.dispatch('Wallet/pcConnectWallet')
+    // }
   },
   methods: {
     // linkConnect() {

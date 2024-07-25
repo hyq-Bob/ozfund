@@ -3,7 +3,7 @@
     <div class="presell_module_three_info">
       <p>
         <!-- <span v-html="$t('preSale.totoInfo')"></span> -->
-        <img  src="../imgs/HODL.png"/>
+        <img  src="../imgs/HOLD.png"/>
       </p>
       <img v-animation class="page_gif" :data-gif_url="require('@/assets/images/presell/gif/module4.gif')" alt="" />
     </div>

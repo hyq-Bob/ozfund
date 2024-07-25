@@ -7,8 +7,7 @@
             {{ isTransform ? $t("purchaseAndPledge.to") : $t("purchaseAndPledge.from") }}
           </span>
           <span>
-            {{ $t("purchaseAndPledge.quantity") }}：{{ busdBalance || 0 }}{{ $t("global.busd") }}({{ isTransform ?
-        "1TOTO=0.1BUSD" : "1BUSD=10TOTO" }})
+            {{ $t("purchaseAndPledge.quantity") }}：{{ busdBalance || 0 }}{{ $t("global.busd") }}({{ isTransform ? "1TOTO=0.1BUSD" : "1BUSD=10TOTO" }})
           </span>
         </p>
         <div>

@@ -59,12 +59,12 @@ const routes = [
         component: () => import("@/views/Qa/index.vue"),
         meta: { title: "常见问题" }
       },
-      {
-        path: "/test",
-        name: "Test",
-        component: () => import("@/views/Test"),
-        meta: { title: "测试mobile" }
-      }
+      // {
+      //   path: "/test",
+      //   name: "Test",
+      //   component: () => import("@/views/Test"),
+      //   meta: { title: "测试mobile" }
+      // }
     ]
   },
   {

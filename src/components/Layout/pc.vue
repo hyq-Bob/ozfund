@@ -197,8 +197,6 @@ export default {
       this.childKey = crt.key;
     },
     navChanges(key, dataList = this.navList) {
-      console.log('key: ', key);
-
       setSession("nav-site", key);
       if (key !== "children") {
         this.childKey = "";

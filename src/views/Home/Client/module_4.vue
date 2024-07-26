@@ -123,10 +123,10 @@ export default {
     ]),
   },
   created() {
-    this.ozcPublish();
-    this.circulatingSupplyFn();
-    this.totoPublish();
-    this.totoDestroyed();
+    // this.ozcPublish();
+    // this.circulatingSupplyFn();
+    // this.totoPublish();
+    // this.totoDestroyed();
   },
 };
 </script>

@@ -122,6 +122,7 @@ import Hint from "@/components/Hint/index.vue";
 import { mapGetters, mapActions } from "vuex";
 import Clamp from '../../components/clamp.vue';
 import { BigNumberToNum } from "@/utils/metamask";
+import * as operCookie from '@/utils/auth'
 export default {
   components: { Clamp, Hint },
   computed: {
@@ -139,12 +140,14 @@ export default {
     };
   },
   created(){
-    this.getCalculateRatio()
+    // this.getCalculateRatio()
   },
   methods: {
     ...mapActions('Metamask', ['stakeCoin2', 'getSettleCount', 'getNextProductionNum', 'getCountStakeAmount']),
     ...mapActions('Wallet', ['getMobileBalance']),
     async getCalculateRatio(){
+      let address = operCookie.getToken('WALLET_ADDRESS')
+      if (!address) return
       let {data:settleCountData} = await this.getSettleCount()
       let {data} = await this.getNextProductionNum()
       let nextNum =  BigNumberToNum(data['_hex'])

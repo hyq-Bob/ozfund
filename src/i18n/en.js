@@ -171,6 +171,7 @@ export default {
   global:{
     unavailable:"Not yet available",
     connect:"Connect",
+    money:"Wallet",
     confirm:"Confirm",
     nft: "NFT",
     dao: "DAO",

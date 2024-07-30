@@ -7,7 +7,7 @@
         src="@/assets/images/purchase/modalClose.png"
         alt=""
       />
-      <div class="modal_head">
+      <div class="modal_head" v-if='modal.title'>
         <p class="modal_head_tit">{{ modal.title }}</p>
       </div>
       <div class="modal_body">
@@ -18,7 +18,7 @@
           <img v-show="modal.status === 3" class="modal_status_img" src="@/assets/images/warning.png" alt="">
         </div>
         <p class="modal_body_txt">{{ modal.txt }}</p>
-        <button class="modal_body_btn" @click="modalBtn">{{ modal.type === 'hint' ? $t('global.confirm') : $t('global.connect') }}</button>
+        <button class="modal_body_btn" @click="modalBtn">{{ modal.type === 'hint' ? $t('global.confirm') : $t('global.connect') + $t('global.money')}}</button>
       </div>
     </div>
   </div>

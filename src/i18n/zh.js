@@ -195,6 +195,7 @@ export default {
   global: {
     unavailable:"暂未开启",
     connect: "连接",
+    money:"钱包",
     confirm: "确定",
     nft: "NFT",
     dao: "DAO",

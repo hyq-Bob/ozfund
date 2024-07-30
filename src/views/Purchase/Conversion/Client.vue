@@ -40,7 +40,7 @@
         {{ $t('home.exchange') }}
       </button>
     </div>
-    <hint ref="hint"/>
+    <hint ref="hint" />
   </div>
 </template>
 
@@ -50,29 +50,30 @@ import { message } from 'ant-design-vue';
 import Hint from "@/components/Hint";
 import * as operCookie from '@/utils/auth'
 export default {
-  components:{Hint},
   data() {
     return {
       type: "b-o",
-      usdtVal:0,
+      usdtVal: 0,
       bo: { busd: 0, ozc: 0 },
       ob: { busd: 0, ozc: 0 },
       authorizationStauts: false,
     };
   },
-  created(){
+  components: { Hint },
+  created() {
     this.getUsdtVal()
   },
   computed: {
-    ...mapGetters('Wallet', ['busdBalance', 'ozcBalance','address'])
+    ...mapGetters('Wallet', ['busdBalance', 'ozcBalance', 'address'])
   },
   methods: {
-    ...mapActions('WalletSplit',['approveAndExchange','ozcExchangeUsdt']),
+    ...mapActions('WalletSplit', ['approveAndExchange', 'ozcExchangeUsdt']),
     ...mapActions('Wallet', ['getMobileBalance']),
-    ...mapActions('Metamask',['getUsdtBalance']),
-    getUsdtVal(){
+    ...mapActions('Metamask', ['getUsdtBalance']),
+    getUsdtVal() {
       let address = operCookie.getToken('WALLET_ADDRESS')
-      this.getUsdtBalance({address}).then((val )=>{
+      if (!address) return
+      this.getUsdtBalance({ address }).then((val) => {
         this.usdtVal = val
       })
     },
@@ -88,7 +89,7 @@ export default {
       }
     },
     conversionBtn() {
-      if (!this.address) return message.error(this.$t('global.pleses')+this.$t('global.connectWallet'))
+      if (!this.address) return message.error(this.$t('global.pleses') + this.$t('global.connectWallet'))
       this.pcConversionBtn()
 
     },
@@ -96,10 +97,10 @@ export default {
       // 这里需要先授权
       if (this.type === 'b-o') {
         if (!this.bo.busd) return message.error(this.$t('tipMessage.successTip'))
-        this.approveAndExchange({amount: this.bo.busd}).then((obj) =>{
+        this.approveAndExchange({ amount: this.bo.busd }).then((obj) => {
           this.resHint(obj.success)
-          if(obj.success){
-            this.getMobileBalance({key:'ozcBalance', unit:'ether'})
+          if (obj.success) {
+            this.getMobileBalance({ key: 'ozcBalance', unit: 'ether' })
             // this.getMobileBalance({key:'busdBalance', unit:'wei'})
             this.getUsdtVal()
           }
@@ -114,11 +115,11 @@ export default {
         // 不加权限用这个
         // //this.$store.dispatch("Wallet/pcReverseExchangeOZCoin", { unit: "ether", amount: this.ob.ozc, cb: this.resHint });
         // this.$store.dispatch("Wallet/pcReverseExchangeOZCoin", { unit: "ether", amount: this.bo.ozc, cb: this.resHint });
-        this.ozcExchangeUsdt({amount: this.bo.ozc}).then((obj) =>{
+        this.ozcExchangeUsdt({ amount: this.bo.ozc }).then((obj) => {
           this.resHint(obj.success)
-          if(obj.success){
+          if (obj.success) {
             // this.getMobileBalance({key:'busdBalance', unit:'wei'})
-            this.getMobileBalance({key:'ozcBalance', unit:'ether'})
+            this.getMobileBalance({ key: 'ozcBalance', unit: 'ether' })
             this.getUsdtVal()
           }
           console.log('success: ', obj);
@@ -131,7 +132,7 @@ export default {
         type: 'hint', // hint || connectWallet
         status: e ? 1 : 2, // 1是成功 2是失败
         show: true,
-        txt: this.$t('home.exchange')+(this.$t(e?'global.success':'global.fail')),
+        txt: this.$t('home.exchange') + (this.$t(e ? 'global.success' : 'global.fail')),
         cb: null
       }
       this.bo = { busd: null, ozc: null }
@@ -199,7 +200,7 @@ export default {
   }
 
   input {
-    
+
     font-size: .16rem;
     color: #666;
     font-weight: 500;
@@ -239,5 +240,4 @@ export default {
   display: block;
   margin: .3rem auto 0;
 }
-
 </style>

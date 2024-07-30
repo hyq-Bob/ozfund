@@ -218,7 +218,7 @@ export default {
     pcLineWallet() {
       if (this.address) return this.pcLineWalletNext();
       this.$parent.$refs.hint.modal = {
-        title: this.$t("global.connectWallet"),
+        // title: this.$t("global.connectWallet"),
         type: "connectWallet", // hint || connectWallet
         show: true,
         txt: this.$t("global.walletSummary"),

@@ -8,7 +8,6 @@
     <component :is="moduleThree" />
     <!-- 模块四 -->
     <component :is="moduleFour" />
-    <!-- <Hint ref="hint" /> -->
   </div>
 </template>
 
